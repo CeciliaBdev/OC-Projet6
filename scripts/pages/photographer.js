@@ -29,8 +29,6 @@ async function displayDataProfile(photographers){
     photographersHeader.appendChild(userProfileCardDOM);
 }
 
-    
-
 
 
 //fct init

@@ -6,6 +6,30 @@
     background-color: #FAFAFA;
     height: 300px;
     margin: 0 100px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+h1{
+    /* color:#D3573C; */
+    font-size: 64px;
+    font-family:'DM Sans';
+    font-weight: 400;
+    margin:0;
+}
+h2{
+    color:#901C1C; 
+    
+}
+span{
+    color:#525252;
+}
+
+
+.photograph-header img{
+    height: 200px;
+    width: 200px;
+    clip-path: circle(50%);
 }
 
 .contact_button {
@@ -19,6 +43,11 @@
     background-color: #901C1C;
     border-radius: 5px;
     cursor: pointer;
+}
+.contact_button:hover, .contact_button:focus{
+    background-color: #DB8876;
+    color:#000;
+    outline:none;
 }
 
 .modal {
