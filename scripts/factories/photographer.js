@@ -25,10 +25,17 @@ function mediaFactory(data){
 
     function getMediaCardDom(){
         const article = document.createElement("article");
-        const img = document.createElement("img");
-        img.setAttribute("src",`assets/images/${image}`);
 
-        article.appendChild(img);
+        article.innerHTML = ` <img src="assets/images/${image}">
+                            <div class="infos">
+                            <p>${title}</p>
+                            <p>${likes}  <i class="fas fa-heart"></i></p>
+                            
+                            </div>
+                            
+                            `;
+
+        
         
         return article;
     }

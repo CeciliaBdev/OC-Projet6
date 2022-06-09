@@ -53,11 +53,11 @@ function displayMedia(medias){
 }
 
 //fct initialisation
-async function selectedInit(){
+async function Init(){
     const params = new URL(document.location).searchParams;
     const photographerId = parseInt(params.get("id"));
     const {selectedPhotgrapher, photographerMedias} = await getSelectedPhotographer(photographerId);
     displayPhotographer(selectedPhotgrapher);
     displayMedia(photographerMedias)
 }
-selectedInit();
+Init();
