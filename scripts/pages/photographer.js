@@ -1,3 +1,6 @@
+import { mediaFactory } from "../factories/media.js";
+import { profileFactory } from "../factories/profile.js";
+
 //fct recupère les données du json
 async function getPhotographers() {
     const response = await fetch("../data/photographers.json");
@@ -24,22 +27,12 @@ async function getSelectedPhotographer(id){
 
 //fct affichage dans le header - profil du photographe
 function displayPhotographer(photographer){
-    const photographerModel = photographerFactory(photographer);
-    //selection des elements html
+    
     const photographerHeader = document.querySelector(".photograph-header");
-    const article = document.createElement("article");
-    const contactButton = document.querySelector(".contact_button");
-    const portrait = document.createElement("img");
-
-    //creation des elements
-    article.innerHTML=`<h1>${photographerModel.name}</h1>`;
-    photographerHeader.appendChild(article);
-    //insertion avant le bouton contact
-    photographerHeader.insertBefore(article,contactButton);
-    //insertion  image profil
-    portrait.setAttribute("src", `assets/photographers/${photographerModel.portrait}`);
-    photographerHeader.appendChild(portrait);
-
+    const photographerModel = profileFactory(photographer);
+        const ProfileDOM = photographerModel.getProfileDOM();
+        photographerHeader.appendChild(ProfileDOM);
+    
 }
 
 //fct affichage des medias dans la gallerie
@@ -61,3 +54,15 @@ async function Init(){
     displayMedia(photographerMedias)
 }
 Init();
+
+
+// const tri = document.querySelector(".triSelect");
+    //  tri.innerHTML = `<div class="tri">Trier par</div>
+                        
+    //                     <select>
+    //                         <option value="0">Popularité</option>
+    //                         <option value="1">Titre</option>
+    //                         <option value="2">Date</option>
+    //                     </select>
+  
+    //   

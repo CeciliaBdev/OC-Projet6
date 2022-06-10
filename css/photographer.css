@@ -7,8 +7,6 @@
     height: 300px;
     margin: 0 100px;
     display: flex;
-    justify-content: space-around;
-    align-items: center;
 }
 
 
@@ -27,9 +25,11 @@ h2{
     color:#525252;
 }
 
-article{
+.photograph-header article{
     display:flex;
-    justify-content: center;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
 }
 .photograph-header img{
     height: 200px;
@@ -55,6 +55,31 @@ article{
     color:#000;
     outline:none;
 }
+/* select tri */
+.triSelect{
+    margin: 50px 100px;
+    font-weight: 900;
+    font-size: 20px;
+    display:flex;
+  
+}
+.tri{
+    margin-right: 20px;
+}
+select{
+    font-size: 20px;
+    font-weight: bold;
+    color: white;
+    padding: 11px;
+    width: 170px;
+    height: 70px;
+    border: none;
+    background-color: #901C1C;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+
 
 /* images gallerie */
 .gallerie{
@@ -65,7 +90,7 @@ article{
     grid-gap: 100px;
     
 }
-article{
+.gallerie article{
     display:flex;
     flex-direction: column;
 }
@@ -84,6 +109,22 @@ article img {
     cursor: pointer;
 }
 
+.details{
+    position:fixed;
+    right:100px;
+    bottom:0;
+    background: #DB8876;
+    height:40px;
+    width:200px;
+    line-height: 40px;
+    
+    border-radius: 5px 5px 0 0;
+}
+.total_likes{
+    display:flex;
+    justify-content: space-around;
+    align-items: center;
+}
 .modal {
     border-radius: 5px;
     background-color: #DB8876;
