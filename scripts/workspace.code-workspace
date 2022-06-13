@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"path": ".."
+		},
+		{
+			"path": "../../../../Exercices Udemy/Frontend/site_avec_image_accueil"
+		}
+	],
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "OC-Projet6"
+	}
+}

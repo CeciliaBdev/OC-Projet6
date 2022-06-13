@@ -112,7 +112,7 @@ article video{
     cursor: pointer;
 }
 
-.details{
+.info_details{
     position:fixed;
     right:100px;
     bottom:0;
@@ -120,14 +120,12 @@ article video{
     height:40px;
     width:200px;
     line-height: 40px;
-    
     border-radius: 5px 5px 0 0;
-}
-.total_likes{
     display:flex;
-    justify-content: space-around;
     align-items: center;
+    justify-content: space-around;
 }
+
 .modal {
     border-radius: 5px;
     background-color: #DB8876;

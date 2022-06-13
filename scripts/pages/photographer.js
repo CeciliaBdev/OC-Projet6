@@ -1,15 +1,22 @@
 import { mediaFactory } from "../factories/media.js";
+
 import { profileFactory } from "../factories/profile.js";
+import { photographerFactory } from "../factories/photographer.js";
+import { priceFactory } from "../factories/price.js";
 
 //fct recupère les données du json
 async function getPhotographers() {
     const response = await fetch("../data/photographers.json");
     const data = await response.json(); // extrait les données du json
-    console.log(JSON.stringify(data)); //affichage console
+    
+    //console.log(JSON.stringify(data)); //affichage console
+    console.log(data.photographers)
     //données photographers et médias
     return {photographers: data.photographers,
             medias: data.media};
+            
 }
+
 
 
 //fct selectionne le photographe
@@ -42,8 +49,40 @@ function displayMedia(medias){
         const mediaModel = mediaFactory(media);
         const mediaCardDom = mediaModel.getMediaCardDom();
         gallerie.appendChild(mediaCardDom);
+        
     });
+    
 }
+
+//func likes
+function likes(data, photographer){
+
+        //init somme
+        let allLikes = 0;
+        data.map((data) => {
+            allLikes += data.likes;
+        });
+        //console.log(allLikes);
+        const likes = document.querySelector(".likes");
+        const price = document.querySelector(".price")
+        likes.innerHTML =`<div class="details">
+                            <p>${allLikes}  <i class="fas fa-heart"></i></p>
+                    
+                            </div>`;
+
+        //renvoi le profil photograph (de la factory)
+        //faire une nouvelle factory avec juste le price
+        //
+        const photographerModel = priceFactory(photographer); //creation de la const qui met en place la f. de create pour un photographe
+        const userCardDOM = photographerModel.getUserPriceDOM(); //creation de la const qui regroupe la 1ère et la 2ème fonction de create pour un photographe
+        price.appendChild(userCardDOM);
+        
+        //
+    }                       
+    
+    // <p> ${photographers.price}€/ jour</p>
+
+
 
 //fct initialisation
 async function Init(){
@@ -51,9 +90,12 @@ async function Init(){
     const photographerId = parseInt(params.get("id"));
     const {selectedPhotgrapher, photographerMedias} = await getSelectedPhotographer(photographerId);
     displayPhotographer(selectedPhotgrapher);
-    displayMedia(photographerMedias)
+    displayMedia(photographerMedias);
+    likes(photographerMedias,selectedPhotgrapher);
+    
 }
 Init();
+
 
 
 // const tri = document.querySelector(".triSelect");
@@ -66,3 +108,16 @@ Init();
     //                     </select>
   
     //   
+
+
+
+//calcul total Likes d'un photographe
+// function totalLikes(data) {
+//     //init somme
+//     let allLikes = 0;
+//     data.map((data) => {
+//         allLikes += data.likes;
+//     });
+//     console.log(allLikes)
+//     return allLikes;
+// }
