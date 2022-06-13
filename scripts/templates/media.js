@@ -1,13 +1,24 @@
 export function mediaTemplate(data){
-    const { image, title, likes} = data;
+    const { image, title, likes, video} = data;
 
-
-    return ` <img src="assets/images/${image}"> 
+    if (data = image){
+        return ` <img src="assets/images/${image}"> 
             <div class="infos">
                 <p>${title}</p>
                 <p>${likes}  <i class="fas fa-heart"></i></p>
             </div>
             `;
+    }
+    if (data = video)
+    {
+        return ` <video controls  ><source src="assets/images/${video}"></video>
+            <div class="infos">
+                <p>${title}</p>
+                <p>${likes}  <i class="fas fa-heart"></i></p>
+            </div>
+            `;
+    }
+    
 }
 
 
