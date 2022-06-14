@@ -13,10 +13,20 @@
       <img src="assets/images/logo.png" class="logo" alt="logo du site Fisheye" />
     </header>
     <main id="main">
-      <div class="photograph-header">
-        
+      <div class="photograph-header">  
       </div>
-      <div class="triSelect"></div>
+      
+<div class="tri">
+  <select id="triSelect" >
+      <option value="0" selected>Popularité</option>
+      <option value="1">Date</option>
+      <option value="2"  >Tri</option>
+</select>
+</div>
+
+
+
+
       <div class="gallerie"></div>
       <div class="info_details">
         <div class="likes"></div>
@@ -27,13 +37,28 @@
 			<div class="modal">
 				<header>
           <h2>Contactez-moi</h2>
+          <p id="name_photographe"></p>
           <img src="assets/icons/close.svg" onclick="closeModal()" alt="croix de fermeture"/>
         </header>
+
 				<form>
-					<div>
-						<label>Prénom</label>
-						<input />
-					</div>
+					<div class="formData">
+						<label for="prenom">Prénom</label>
+						<input type="text" id="prenom" class="champInput"/>
+          </div>
+          <div class="formData">
+            <label for="nom">Nom</label>
+						<input type="text" id="nom" class="champInput"/>
+        </div>
+        <div class="formData">
+            <label for="email">Email</label>
+						<input type="email"id="email"/>
+        </div>
+        <div class="formData">
+            <label for="textarea">Votre message</label>
+            <textarea name="textarea" id="textarea"></textarea>
+        </div>
+				
           <button class="contact_button">Envoyer</button>
 				</form>
 			</div>

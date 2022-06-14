@@ -6,7 +6,8 @@
     background-color: #FAFAFA;
     height: 300px;
     margin: 0 100px;
-    display: flex;
+    display:flex;
+    
 }
 
 
@@ -27,10 +28,11 @@ h2{
 
 .photograph-header article{
     display:flex;
-    flex-direction: row;
-    justify-content: space-between;
     align-items: center;
-}
+    justify-content: space-between;
+    
+    
+} 
 .photograph-header img{
     height: 200px;
     width: 200px;
@@ -56,28 +58,7 @@ h2{
     outline:none;
 }
 /* select tri */
-.triSelect{
-    margin: 50px 100px;
-    font-weight: 900;
-    font-size: 20px;
-    display:flex;
-  
-}
-.tri{
-    margin-right: 20px;
-}
-select{
-    font-size: 20px;
-    font-weight: bold;
-    color: white;
-    padding: 11px;
-    width: 170px;
-    height: 70px;
-    border: none;
-    background-color: #901C1C;
-    border-radius: 5px;
-    cursor: pointer;
-}
+
 
 
 
@@ -135,7 +116,12 @@ article video{
     align-items: center;
     justify-content: space-between;
     padding: 35px;
-    margin: auto;
+    margin: 0 auto;
+    /* modale centrée */
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
 }
 
 .modal header {
@@ -154,6 +140,7 @@ article video{
 }
 
 form {
+           
     display: flex;
     width: 100%;
     flex-direction: column;
@@ -179,3 +166,28 @@ form input {
     border: none;
     border-radius: 5px;
 }
+textarea{
+    width:100%;
+    height:120px;
+    border-radius: 5px;
+    border: none;
+}
+form .contact_button:hover, form .contact_button:focus{
+    border:1px solid #901C1C;
+}
+/* erreur formulaire */
+.formData[data-error]::after {
+    content: attr(data-error);
+    font-size: 15px;
+    color: red;
+    display: block;
+    margin-top: 7px;
+    line-height: 0.3;
+    opacity: 0;
+
+    
+  }
+  .formData[data-error-visible="true"]::after {
+    opacity: 1;
+  }
+  
