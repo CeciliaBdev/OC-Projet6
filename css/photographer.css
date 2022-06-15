@@ -29,8 +29,8 @@ h2{
 .photograph-header article{
     display:flex;
     align-items: center;
-    justify-content: space-between;
-    
+    justify-content: space-around;
+    width:100%;
     
 } 
 .photograph-header img{
@@ -74,6 +74,7 @@ h2{
 .gallerie article{
     display:flex;
     flex-direction: column;
+    cursor:pointer;
 }
 article img {
     /* width: 350px;*/
@@ -190,4 +191,54 @@ form .contact_button:hover, form .contact_button:focus{
   .formData[data-error-visible="true"]::after {
     opacity: 1;
   }
-  
+
+  /* lightbox */
+  .lightbox{
+      position:fixed;
+      top:0;
+      left:0;
+      background-color:rgba(122, 29, 29, 0.5);
+      width:100vw;
+      height:100vh;
+      display:none; 
+      /* caché au début */
+      z-index:10;
+  }
+
+  /* choix de boutton (accessibilité) */
+  .lightbox button {
+    text-indent: -3000px; 
+    /* texte des boutons plus visibles */
+    cursor: pointer;
+    border:none;
+  }
+  .lightbox_next, .lightbox_prev{
+    z-index: 11;
+      background: url(../assets/svg/arrow.svg) center center / 100% 100%;
+      width:24px;
+      height:100%;
+      position: fixed;
+      top:0;
+      right:15px;
+      /* bouton next tout à droite */
+      margin-top:-25px;
+      
+      /* ajout d'une zone de selection du bouton sur toute la hauteur = top0 height100% */
+  }
+  .lightbox_prev{
+      left:15px;
+      transform: rotate(180deg);
+  }
+  .lightbox_close{
+      background: url(../assets/svg/cross.svg) no-repeat;
+      width:24px;
+      height:40px;
+      position:fixed;
+      top:15px;
+      right:15px;
+      z-index:12;
+  }
+  .lightbox_container{
+      display:flex;
+      align-content: center;
+  }

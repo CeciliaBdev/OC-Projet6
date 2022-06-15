@@ -3,6 +3,7 @@ import { mediaFactory } from "../factories/media.js";
 import { profileFactory } from "../factories/profile.js";
 
 import { priceFactory } from "../factories/price.js";
+import { lightBoxFactory } from "../factories/lightbox.js";
 
 //fct recupère les données du json
 async function getPhotographers() {
@@ -86,7 +87,37 @@ function likes(data, photographer){
         select.value = option.value; //prend la valeur selectionné ( à l'origine)
     }   
     update();     
-    
+
+//lightbox
+function lightBox(data){
+    const divLightBox = document.querySelector(".gallerie");
+    const  lightbox = document.querySelector(".lightbox");
+    const closeLightbox = document.querySelector(".lightbox_close");
+    //tableau de mes images (tous mes articles)
+    const links = Array.from(divLightBox.querySelectorAll("article"))
+    console.log(links)
+
+    const lightboxModel = lightBoxFactory(data); //factory
+    const getLightBoxDom = lightboxModel.getLightBox();//template
+   
+
+    links.forEach(link => {
+        link.addEventListener('click', (e) => {
+            //ouverture lightbox
+            lightbox.style.display = "block";
+            
+            //j'ajoute mon image dans la lightbox
+            //ne fonctionne pas
+            lightbox.appendChild(getLightBoxDom)
+            //(e.currentTarget.dataset.id);
+        })   
+    })
+
+    //fermeture lightbox
+    closeLightbox.addEventListener('click', () => {
+            lightbox.style.display="none";
+    })
+}
     
 
 
@@ -100,6 +131,7 @@ async function Init(){
     displayPhotographer(selectedPhotgrapher);
     displayMedia(photographerMedias);
     likes(photographerMedias,selectedPhotgrapher);
+    lightBox(photographerMedias);
    
 }
 Init();
