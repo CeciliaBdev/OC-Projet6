@@ -60,6 +60,9 @@ function likes(data, photographer){
 
         //init somme
         let allLikes = 0;
+
+        
+
         data.map((data) => {
             allLikes += data.likes;
         });
@@ -70,6 +73,18 @@ function likes(data, photographer){
                             <p>${allLikes}  <i class="fas fa-heart"></i></p>
                     
                             </div>`;
+        
+        //Incrémentation total likes
+        let coeurs = document.querySelectorAll("i"); //ensemble des coeurs (icones)
+        coeurs.forEach((element) => { //pour chaque coeur
+            element.addEventListener('click', () => {
+                console.log("test")
+                allLikes++;
+                likes.textContent=allLikes;
+            });
+        
+         
+        });
 
         //renvoi le profil photograph (de la factory)
         //faire une nouvelle factory avec juste le price
@@ -77,7 +92,11 @@ function likes(data, photographer){
         const userCardDOM = photographerModel.getUserPriceDOM(); //creation de la const qui regroupe la 1ère et la 2ème fonction de create pour un photographe
         price.appendChild(userCardDOM);
       
-    }           
+        
+    }   
+    
+
+
     //select
     function update(){
         let select= document.getElementById('triSelect');
@@ -94,20 +113,28 @@ function lightBox(data){
     const  lightbox = document.querySelector(".lightbox");
     const closeLightbox = document.querySelector(".lightbox_close");
     //tableau de mes images (tous mes articles)
-    const links = Array.from(divLightBox.querySelectorAll("article"))
-    console.log(links)
+    const links = Array.from(divLightBox.querySelectorAll("article img"))
+    //console.log(links)
 
     const lightboxModel = lightBoxFactory(data); //factory
     const getLightBoxDom = lightboxModel.getLightBox();//template
    
+   
+                 //id = e.currentTarget.dataset.id
+                 
+           
 
     links.forEach(link => {
         link.addEventListener('click', (e) => {
             //ouverture lightbox
             lightbox.style.display = "block";
             
+            
+            
             //j'ajoute mon image dans la lightbox
-            //ne fonctionne pas
+            //fonctionne avec la derniere image mais pas celle selectionnée
+            
+        
             lightbox.appendChild(getLightBoxDom)
             //(e.currentTarget.dataset.id);
         })   
@@ -117,6 +144,17 @@ function lightBox(data){
     closeLightbox.addEventListener('click', () => {
             lightbox.style.display="none";
     })
+
+    //evenements clavier
+    //ne fonctionne pas car derriere lightbox accessible
+    document.addEventListener('keydown', (KeyBoardEvent) => {
+        //si appuie sur escape
+        if(KeyBoardEvent.key === "27"){
+            lightbox.style.display="none";
+        }
+    })
+
+    
 }
     
 
