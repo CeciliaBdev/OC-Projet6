@@ -1,7 +1,9 @@
 #contact_modal {
     display: none;
 }
-
+main{
+    z-index:1;
+}
 .photograph-header {
     background-color: #FAFAFA;
     height: 300px;
@@ -69,7 +71,7 @@ h2{
     grid-template-columns: repeat(3, minmax(100px, 1fr));
     grid-template-rows: repeat(4,minmax(300px));
     grid-gap: 100px;
-    
+    z-index:1;
 }
 .gallerie article{
     display:flex;
@@ -195,14 +197,16 @@ form .contact_button:hover, form .contact_button:focus{
   /* lightbox */
   .lightbox{
       position:fixed;
-      top:0;
-      left:0;
-      background-color:rgba(122, 29, 29, 0.5);
-      width:100vw;
-      height:100vh;
+      top:50%;
+      left:50%;
+      transform:translate(-50%, -50%);
+      /* background-color:rgba(122, 29, 29, 0.2); */
+      width:90vw;
+      height:90vh;
       display:none; 
       /* caché au début */
       z-index:10;
+      border:1px solid red;
   }
 
   /* choix de boutton (accessibilité) */
@@ -239,6 +243,11 @@ form .contact_button:hover, form .contact_button:focus{
       z-index:12;
   }
   .lightbox_container{
+      z-index:20;
+      height:100%;
       display:flex;
-      align-content: center;
+      align-items: center;
+      border: 1px solid black;
+      justify-content: center;
+      background-color: white;
   }

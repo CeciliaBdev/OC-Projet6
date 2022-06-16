@@ -1,8 +1,8 @@
 export function mediaTemplate(data){
-    const { image, title, likes, video,id} = data;
+    const { image, title, likes, video} = data;
 
     if (data = image){
-        return ` <img src="assets/images/${image}" data-id="${id}> 
+        return ` <img src="assets/images/${image}"> 
             <div class="infos">
                 <p>${title}</p>
                 <p>${likes}  <i class="fas fa-heart"></i></p>
