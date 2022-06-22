@@ -1,8 +1,10 @@
 export function lightBoxTemplate(data, elementClicked){
     
         //console.log(data)
-        console.log(elementClicked)
+        //console.log(elementClicked)
+        
         const idClicked = elementClicked.dataset.id;
+        console.log("idClicked",idClicked)
         const { image,video,title } = data.find((item) => item.id == idClicked ) 
             //lorsque l'image correspond au bon id
         

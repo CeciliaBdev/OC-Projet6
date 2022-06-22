@@ -78,7 +78,6 @@ function likes(data, photographer){
         
         //Incrémentation total likes
         let coeurs = document.querySelectorAll(".infos i"); //ensemble des coeurs (icones)
-        let compteurPhoto = document.querySelectorAll(".infos p")
         coeurs.forEach((element) => { //pour chaque coeur
             element.addEventListener('click', () => {
                 console.log("test")
@@ -99,6 +98,8 @@ function likes(data, photographer){
       
         
     }   
+
+
 
     //lightbox
     //fonctionne ouverture lightbox
@@ -134,23 +135,31 @@ function lightBox(data){
 
             lightboxContain.innerHTML="";
             lightboxContain.appendChild(getLightBoxDom)
-        
+
+            console.log(link) //mon element clické
+            
         
         })   
     })
+
+   
 }
-
-
-
 //------------------------//
 
 
     //image precedente
-    // const prev = document.querySelector(".lightbox_prev")
-    // prev.addEventListener('click', () => {
+    const prev = document.querySelector(".lightbox_prev")
+    prev.addEventListener('click', () => {
         
-    //     });
+        });
     
+        //suivante
+    const next = document.querySelector(".lightbox_next")
+    next.addEventListener('click', () => {
+        
+        });
+
+        
     //fermeture lightbox
     function closeBox(){
         const lightbox = document.querySelector(".lightbox");
