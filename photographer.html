@@ -6,6 +6,7 @@
     <link rel="icon" type="image/png" href="assets/favicon.png">
     <link href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
     <title>Fisheye - photographe </title>
   </head>
   <body>
@@ -16,13 +17,11 @@
       <div class="photograph-header">  
       </div>
       
-<div class="tri">
-  <select id="triSelect" >
-      <option value="0" selected>Popularité</option>
-      <option value="1">Date</option>
-      <option value="2"  >Tri</option>
-</select>
-</div>
+      <select name="select"  id="select" >
+        <option value="1">Popularité</option>
+        <option value="2">Date</option>
+        <option value="3">Titre</option>
+      </select>
 
       <div class="gallerie"></div>
       <div class="info_details">
@@ -66,6 +65,7 @@
       <button class="lightbox_close">Fermer</button>
       <button class="lightbox_next">Suivant</button>
       <button class="lightbox_prev">Précédent</button>
+      <div class="lightbox_container"></div>
     </div>
     <script src="/scripts/pages/photographer.js" type="module"></script>
     <script src="/scripts/utils/contactForm.js"></script>

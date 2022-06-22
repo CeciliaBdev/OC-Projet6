@@ -5,17 +5,19 @@ export function mediaTemplate(data){
         return ` <img src="assets/images/${image}"> 
             <div class="infos">
                 <p>${title}</p>
-                <p>${likes}  <i class="fas fa-heart"></i></p>
+                <p>${likes}</p>
+                <p><i class="fas fa-heart"></i></p>
             </div>
             `;
     }
     if (data = video)
     {
         return ` <video controls  ><source src="assets/images/${video}"></video>
-            <div class="infos">
-                <p>${title}</p>
-                <p>${likes}  <i class="fas fa-heart"></i></p>
-            </div>
+                <div class="infos">
+                    <p>${title}</p>
+                    <p>${likes}</p>
+                <i class="fas fa-heart"></i>
+                </div>
             `;
     }
     

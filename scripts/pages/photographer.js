@@ -5,6 +5,9 @@ import { profileFactory } from "../factories/profile.js";
 import { priceFactory } from "../factories/price.js";
 import { lightBoxFactory } from "../factories/lightbox.js";
 
+
+
+
 //fct recupère les données du json
 async function getPhotographers() {
     const response = await fetch("../data/photographers.json");
@@ -52,6 +55,8 @@ function displayMedia(medias){
         gallerie.appendChild(mediaCardDom);
         
     });
+    //mon tableau d'objet
+    //console.log(medias)
     
 }
 
@@ -60,9 +65,7 @@ function likes(data, photographer){
 
         //init somme
         let allLikes = 0;
-
         
-
         data.map((data) => {
             allLikes += data.likes;
         });
@@ -71,20 +74,22 @@ function likes(data, photographer){
         const price = document.querySelector(".price")
         likes.innerHTML =`<div class="details">
                             <p>${allLikes}  <i class="fas fa-heart"></i></p>
-                    
-                            </div>`;
+                         </div>`;
         
         //Incrémentation total likes
-        let coeurs = document.querySelectorAll("i"); //ensemble des coeurs (icones)
+        let coeurs = document.querySelectorAll(".infos i"); //ensemble des coeurs (icones)
+        let compteurPhoto = document.querySelectorAll(".infos p")
         coeurs.forEach((element) => { //pour chaque coeur
             element.addEventListener('click', () => {
                 console.log("test")
                 allLikes++;
-                likes.textContent=allLikes;
+                likes.innerHTML=`<div class="details">
+                <p>${allLikes}  <i class="fas fa-heart"></i></p>
+             </div>`;
+             
             });
-        
-         
         });
+        
 
         //renvoi le profil photograph (de la factory)
         //faire une nouvelle factory avec juste le price
@@ -94,69 +99,88 @@ function likes(data, photographer){
       
         
     }   
-    
 
-
-    //select
-    function update(){
-        let select= document.getElementById('triSelect');
-        let option = select.options[select.selectedIndex];
-
-        select.value=option.text; //prend la valeur du text
-        select.value = option.value; //prend la valeur selectionné ( à l'origine)
-    }   
-    update();     
-
-//lightbox
+    //lightbox
+    //fonctionne ouverture lightbox
+// //lightbox
 function lightBox(data){
     const divLightBox = document.querySelector(".gallerie");
-    const  lightbox = document.querySelector(".lightbox");
-    const closeLightbox = document.querySelector(".lightbox_close");
+    const lightbox = document.querySelector(".lightbox");
+    const lightboxContain = document.querySelector(".lightbox_container");
+    
     //tableau de mes images (tous mes articles)
-    const links = Array.from(divLightBox.querySelectorAll("article img"))
+    const links = Array.from(divLightBox.querySelectorAll(("article")))
     //console.log(links)
 
-    const lightboxModel = lightBoxFactory(data); //factory
-    const getLightBoxDom = lightboxModel.getLightBox();//template
-   
-   
-                 //id = e.currentTarget.dataset.id
-                 
-           
 
+   //console.log(data)
+
+//    for (let dataset in data){
+//     const alldataset = data[dataset] //tous les datatset
+//     console.log(alldataset)   //tous mes id    
+//    }
+//    console.log("1er Id:  "+data[0].id) //1er Id
+
+    
+     
     links.forEach(link => {
-        link.addEventListener('click', (e) => {
+        link.addEventListener('click', () => {
             //ouverture lightbox
             lightbox.style.display = "block";
-            
-            
-            
-            //j'ajoute mon image dans la lightbox
-            //fonctionne avec la derniere image mais pas celle selectionnée
-            
+            const lightboxModel = lightBoxFactory(data,link); //factory
+            const getLightBoxDom = lightboxModel.getLightBox();//template
         
-            lightbox.appendChild(getLightBoxDom)
-            //(e.currentTarget.dataset.id);
+            //j'ajoute mon image dans la lightbox
+
+            lightboxContain.innerHTML="";
+            lightboxContain.appendChild(getLightBoxDom)
+        
+        
         })   
     })
+}
 
+
+
+//------------------------//
+
+
+    //image precedente
+    // const prev = document.querySelector(".lightbox_prev")
+    // prev.addEventListener('click', () => {
+        
+    //     });
+    
     //fermeture lightbox
+    function closeBox(){
+        const lightbox = document.querySelector(".lightbox");
+        lightbox.style.display="none";
+        
+    }
+    //fermeture au click souris
+    const closeLightbox = document.querySelector(".lightbox_close");
     closeLightbox.addEventListener('click', () => {
-            lightbox.style.display="none";
+            closeBox();
+            
     })
-
     //evenements clavier
-    //ne fonctionne pas car derriere lightbox accessible
-    document.addEventListener('keydown', (KeyBoardEvent) => {
+
+    document.addEventListener('keyup', (event) => {
+        //console.log(event)
         //si appuie sur escape
-        if(KeyBoardEvent.key === "27"){
-            lightbox.style.display="none";
+        if(event.key == 'Escape'){
+            closeBox();
+        }
+        //appui fleche droite
+        if(event.key == 'ArrowRight'){
+            console.log("fleche droite")
+        }
+        //appui fleche gauche
+        if(event.key == 'ArrowLeft'){
+            console.log("fleche gauche")
         }
     })
 
-    
-}
-    
 
 
 
@@ -170,7 +194,7 @@ async function Init(){
     displayMedia(photographerMedias);
     likes(photographerMedias,selectedPhotgrapher);
     lightBox(photographerMedias);
-   
+     
 }
 Init();
 
@@ -187,6 +211,31 @@ Init();
   
     //   
 
+
+    //tri par nb de likes
+            // if(menuSelect.value === "popularité"){
+            //     console.log("Popularité")
+            // }
+                //un element                
+                // for (let like in medias ){
+                //     console.log( medias[like].likes)
+                //     resultat.push(medias[like].likes)
+                    
+                // }
+                // console.log(resultat)
+
+
+                // for ( let element in medias){
+                //     //console.log(medias[element])
+                //     medias.sort(function compare(a, b) {
+                //             if (a.likes < b.likes)
+                //                return -1;
+                //             if (a.likes > b.likes )
+                //                return 1;
+                //             return 0;
+                //           });
+                    
+                // }
 
 
 
