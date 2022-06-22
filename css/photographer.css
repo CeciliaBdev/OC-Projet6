@@ -60,7 +60,9 @@ h2{
     outline:none;
 }
 /* select tri */
-
+select{
+    margin: 0 50px;
+}
 
 
 
@@ -245,10 +247,11 @@ form .contact_button:hover, form .contact_button:focus{
   .lightbox_container{
       
       height:100vh;
-      width:100vw;
+      width:90vw;
       display:flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       background-color: white;
+      margin:0 auto;
   }

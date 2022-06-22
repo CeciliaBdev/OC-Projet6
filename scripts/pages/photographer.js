@@ -111,7 +111,8 @@ function lightBox(data){
     
     //tableau de mes images (tous mes articles)
     const links = Array.from(divLightBox.querySelectorAll(("article")))
-    //console.log(links)
+    console.log(links)
+    
 
 
    //console.log(data)
@@ -132,34 +133,52 @@ function lightBox(data){
             const getLightBoxDom = lightboxModel.getLightBox();//template
         
             //j'ajoute mon image dans la lightbox
-
             lightboxContain.innerHTML="";
             lightboxContain.appendChild(getLightBoxDom)
-
-            console.log(link) //mon element clické
-            
         
-        })   
+            //index de l'image en cours
+            let index = links.findIndex(element => element = link)
+            console.log("index", index) //index =0 pour image en cours
+            console.log("media en cours", link) //mon element clické
+            //image class="mediaGallerie"
+            
+            //image precedente
+            const prev = document.querySelector(".lightbox_prev")
+            prev.addEventListener('click', () => {
+                index=links.length //taille de ma liste ( en boucle, dernier element)  
+                console.log("precedent")
+                console.log("index precedent",index)  
+                let prevModel = lightBoxFactory(data,link[index]) //factory avec le link à l'index precedent
+                let prevDom = prevModel.getLightBox();
+                lightboxContain.innerHTML="";
+                lightboxContain.appendChild(prevDom)
+                });
+
+            //suivante
+            const next = document.querySelector(".lightbox_next")
+            next.addEventListener('click', () => {
+            console.log("suivant")
+            index = index + 1;  //le suivant
+            console.log("index suivant",index)  
+           
+            });
+        }) 
+          
     })
+
+    
+    
+        
+      
 
    
 }
 //------------------------//
-
-
-    //image precedente
-    const prev = document.querySelector(".lightbox_prev")
-    prev.addEventListener('click', () => {
-        
-        });
+      
     
-        //suivante
-    const next = document.querySelector(".lightbox_next")
-    next.addEventListener('click', () => {
-        
-        });
+    
 
-        
+
     //fermeture lightbox
     function closeBox(){
         const lightbox = document.querySelector(".lightbox");
