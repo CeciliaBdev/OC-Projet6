@@ -80,6 +80,7 @@ select{
     flex-direction: column;
     cursor:pointer;
 }
+
 article img {
     /* width: 350px;*/
     height:350px; 
@@ -97,6 +98,7 @@ article video{
 }
 .infos i{
     cursor: pointer;
+    margin-left: 5px;
 }
 
 .info_details{

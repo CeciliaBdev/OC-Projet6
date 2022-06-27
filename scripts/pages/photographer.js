@@ -82,12 +82,15 @@ function likes(data, photographer){
        //cibler le media img/video dans le links
         coeurs.forEach((element) => { //pour chaque coeur
             element.addEventListener('click', () => {
-                console.log("test")
+                //console.log("test")
                 allLikes++;
                 likes.innerHTML=`<div class="details">
                 <p>${allLikes}  <i class="fas fa-heart"></i></p>
              </div>`;
              
+             //console.log(element.previousSibling);
+             element.previousSibling.textContent++;
+            
             });
         });
        
@@ -246,14 +249,15 @@ function lightBox(data){
             element.remove()
         });
         //j'affiche mes nouveaux medias
-        mediasTriés.forEach((mediaTrié) => {
-            const mediaModel = mediaFactory(mediaTrié);
-        const mediaCardDom = mediaModel.getMediaCardDom();
-        gallerie.appendChild(mediaCardDom);
+        mediasTriés.forEach((mediatrié) => {
+            const mediaModel = mediaFactory(mediatrié);
+            const mediaCardDom = mediaModel.getMediaCardDom();
+            gallerie.appendChild(mediaCardDom);
         
         })
 
     }
+    //sortBy();
     
 
 
