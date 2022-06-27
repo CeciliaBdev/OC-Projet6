@@ -78,6 +78,8 @@ function likes(data, photographer){
         
         //Incrémentation total likes
         let coeurs = document.querySelectorAll(".infos i"); //ensemble des coeurs (icones)
+        
+       //cibler le media img/video dans le links
         coeurs.forEach((element) => { //pour chaque coeur
             element.addEventListener('click', () => {
                 console.log("test")
@@ -88,7 +90,9 @@ function likes(data, photographer){
              
             });
         });
-        
+       
+
+
 
         //renvoi le profil photograph (de la factory)
         //faire une nouvelle factory avec juste le price
@@ -111,8 +115,8 @@ function lightBox(data){
     
     //tableau de mes images (tous mes articles)
     const links = Array.from(divLightBox.querySelectorAll(("article")))
-    console.log(links)
     
+   //cibler le media img/video dans le links
 
 
    //console.log(data)
@@ -127,6 +131,7 @@ function lightBox(data){
      
     links.forEach(link => {
         link.addEventListener('click', () => {
+            console.log(link.childNodes[1])
             //ouverture lightbox
             lightbox.style.display = "block";
             const lightboxModel = lightBoxFactory(data,link); //factory
@@ -209,6 +214,47 @@ function lightBox(data){
         }
     })
 
+    //function tri
+    function sortBy(value){
+    
+
+        //nouvel affichage des datas triés
+        let mediasTriés;
+    
+        if (value=="popularité"){
+            console.log("tri par popularité")
+            
+            function sortByPop(datas){
+                return datas.sortBy((a,b)=> {
+                    return b.likes - a.likes;
+                });
+            }
+            mediasTriés = sortByPop(photographerMedias)
+    
+        }
+        if (value=="date"){
+            console.log("tri par date")
+        }
+        if (value=="titre"){
+            console.log("tri par titre")
+        }
+
+        //je mets les nouveaux medias triés dans la nouvelle gallerie
+        const gallerie = document.querySelector(".gallerie");
+        //j'enleve les medias deja existants
+        document.querySelectorAll("article.mediaGallerie").forEach((element) => {
+            element.remove()
+        });
+        //j'affiche mes nouveaux medias
+        mediasTriés.forEach((mediaTrié) => {
+            const mediaModel = mediaFactory(mediaTrié);
+        const mediaCardDom = mediaModel.getMediaCardDom();
+        gallerie.appendChild(mediaCardDom);
+        
+        })
+
+    }
+    
 
 
 
@@ -222,7 +268,8 @@ async function Init(){
     displayMedia(photographerMedias);
     likes(photographerMedias,selectedPhotgrapher);
     lightBox(photographerMedias);
-     
+    
+    
 }
 Init();
 

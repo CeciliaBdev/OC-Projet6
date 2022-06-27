@@ -5,7 +5,7 @@ export function mediaTemplate(data){
         return ` <img src="assets/images/${image}"> 
             <div class="infos">
                 <p>${title}</p>
-                <p>${likes}</p>
+                <span>${likes}</span>
                 <p><i class="fas fa-heart"></i></p>
             </div>
             `;

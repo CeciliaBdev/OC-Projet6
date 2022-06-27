@@ -17,10 +17,10 @@
       <div class="photograph-header">  
       </div>
       
-      <select name="select"  id="select" >
-        <option value="1">Popularité</option>
-        <option value="2">Date</option>
-        <option value="3">Titre</option>
+      <select name="select"  id="select" onchange="sortBy(value)">
+        <option value="popularité">Popularité</option>
+        <option value="date">Date</option>
+        <option value="titre">Titre</option>
       </select>
 
       <div class="gallerie"></div>
@@ -69,5 +69,6 @@
     </div>
     <script src="/scripts/pages/photographer.js" type="module"></script>
     <script src="/scripts/utils/contactForm.js"></script>
+  
   </body>
 </html>
