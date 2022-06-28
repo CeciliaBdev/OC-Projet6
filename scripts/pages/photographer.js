@@ -60,6 +60,77 @@ function displayMedia(medias){
     
 }
 
+//function tri des medias
+//par nb de likes - popularité
+function sortPopular(medias) {
+    medias.sort((a, b) => {
+      if (a.likes < b.likes) {
+        return 1;
+      }
+      if (a.likes > b.likes) {
+        return -1;
+      }
+      return 0;
+    });
+  }
+
+  //par date ( date la plus récente)
+  function sortDate(medias) {
+    medias.sort((a, b) => {
+      if (a.date < b.date) {
+        return 1;
+      }
+      if (a.date > b.date) {
+        return -1;
+      }
+      return 0;
+    });
+  }
+
+  //par ordre alphabétique par titre
+  function sortTitle(medias) {
+    medias.sort((a, b) => {
+      if (a.title > b.title) {
+        return 1;
+      }
+      if (a.title < b.title) {
+        return -1;
+      }
+      return 0;
+    });
+  }
+  
+
+  //tri selon le choix du select
+  function sortMedia(medias){
+      const selection = document.getElementById("select")
+      selection.addEventListener('click', (e) => {
+          if (e.target.value === "popularité"){
+              console.log("tri par popularité")
+              //console.log(medias)
+              sortPopular(medias)
+          }
+          if (e.target.value === "date"){
+            console.log("tri par date")
+            //console.log(medias)
+            sortDate(medias)
+            }
+            if (e.target.value === "titre"){
+                console.log("tri par titre")
+                console.log(medias)
+                sortTitle(medias)
+                }
+        const gallery = document.querySelector(".gallerie");
+        gallery.innerHTML = "";
+        displayMedia(medias);
+        lightBox(medias);
+        //function likes ne fonctionne pas sur la nouvelle gallerie triée
+        //likes
+      })
+  }
+
+
+
 //func likes
 function likes(data, photographer){
 
@@ -94,21 +165,14 @@ function likes(data, photographer){
             });
         });
        
-
-
-
         //renvoi le profil photograph (de la factory)
         //faire une nouvelle factory avec juste le price
         const photographerModel = priceFactory(photographer); //creation de la const qui met en place la f. de create pour un photographe
         const userCardDOM = photographerModel.getUserPriceDOM(); //creation de la const qui regroupe la 1ère et la 2ème fonction de create pour un photographe
         price.appendChild(userCardDOM);
-      
-        
     }   
 
 
-
-    //lightbox
     //fonctionne ouverture lightbox
 // //lightbox
 function lightBox(data){
@@ -117,7 +181,7 @@ function lightBox(data){
     const lightboxContain = document.querySelector(".lightbox_container");
     
     //tableau de mes images (tous mes articles)
-    const links = Array.from(divLightBox.querySelectorAll(("article")))
+    const links = Array.from(divLightBox.querySelectorAll((" article")))
     
    //cibler le media img/video dans le links
 
@@ -217,48 +281,7 @@ function lightBox(data){
         }
     })
 
-    //function tri
-    function sortBy(value){
-    
-
-        //nouvel affichage des datas triés
-        let mediasTriés;
-    
-        if (value=="popularité"){
-            console.log("tri par popularité")
-            
-            function sortByPop(datas){
-                return datas.sortBy((a,b)=> {
-                    return b.likes - a.likes;
-                });
-            }
-            mediasTriés = sortByPop(photographerMedias)
-    
-        }
-        if (value=="date"){
-            console.log("tri par date")
-        }
-        if (value=="titre"){
-            console.log("tri par titre")
-        }
-
-        //je mets les nouveaux medias triés dans la nouvelle gallerie
-        const gallerie = document.querySelector(".gallerie");
-        //j'enleve les medias deja existants
-        document.querySelectorAll("article.mediaGallerie").forEach((element) => {
-            element.remove()
-        });
-        //j'affiche mes nouveaux medias
-        mediasTriés.forEach((mediatrié) => {
-            const mediaModel = mediaFactory(mediatrié);
-            const mediaCardDom = mediaModel.getMediaCardDom();
-            gallerie.appendChild(mediaCardDom);
-        
-        })
-
-    }
-    //sortBy();
-    
+ 
 
 
 
@@ -272,7 +295,7 @@ async function Init(){
     displayMedia(photographerMedias);
     likes(photographerMedias,selectedPhotgrapher);
     lightBox(photographerMedias);
-    
+    sortMedia(photographerMedias)
     
 }
 Init();
