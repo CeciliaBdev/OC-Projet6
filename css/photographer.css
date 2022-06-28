@@ -9,12 +9,12 @@ main{
     height: 300px;
     margin: 0 100px;
     display:flex;
-    
+    margin-bottom: 50px;
 }
 
 
 h1{
-    /* color:#D3573C; */
+    color:#D3573C; 
     font-size: 64px;
     font-family:'DM Sans';
     font-weight: 400;
@@ -22,10 +22,19 @@ h1{
 }
 h2{
     color:#901C1C; 
+    font-size: 24px;
+    font-family:'DM Sans';
+    font-weight: 400;
+    margin:0;
     
 }
-.price{
+.tagline{
+    font-size: 18px;
     color:#525252;
+    margin:10px 0;
+}
+.infos_profil{
+    width:30%;
 }
 
 .photograph-header article{
@@ -39,10 +48,10 @@ h2{
     height: 200px;
     width: 200px;
     clip-path: circle(50%);
-    
+    margin-right: 50px;
 }
 
-.contact_button {
+.contact_button,#select {
     font-size: 20px;
     font-weight: bold;
     color: white;
@@ -53,6 +62,7 @@ h2{
     background-color: #901C1C;
     border-radius: 5px;
     cursor: pointer;
+    
 }
 .contact_button:hover, .contact_button:focus{
     background-color: #DB8876;
@@ -60,8 +70,9 @@ h2{
     outline:none;
 }
 /* select tri */
-select{
-    margin: 0 50px;
+label {
+    margin-left: 100px;
+    margin-right: 50px;
 }
 
 
@@ -119,6 +130,7 @@ article video{
     border-radius: 5px;
     background-color: #DB8876;
     width: 50%;
+    height:90vh;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -139,12 +151,14 @@ article video{
 
 .modal header img {
     cursor: pointer;
+    width:42px;
 }
 
 .modal header h2 {
     font-size: 64px;
     font-weight: normal;
     text-align: center;
+    color:#000;
 }
 
 form {
@@ -158,6 +172,7 @@ form {
 form label {
     color: #312E2E;
     font-size: 36px;
+    margin:0;
 }
 
 form div {
@@ -256,4 +271,8 @@ form .contact_button:hover, form .contact_button:focus{
       justify-content: center;
       background-color: white;
       margin:0 auto;
+  }
+  .infos_media{
+      color:#901C1C;
+      
   }
