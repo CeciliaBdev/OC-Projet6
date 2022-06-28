@@ -9,7 +9,6 @@ export function mediaTemplate(data){
             <div class="infos">
                 <p>${title}</p>
                 <p class="mediaLike">${likes}<i class="fas fa-heart"></i></p>
-                
             </div>
             `;
     }
@@ -18,8 +17,7 @@ export function mediaTemplate(data){
         return ` <video controls  ><source src="assets/images/${video}"></video>
                 <div class="infos">
                     <p>${title}</p>
-                    <p>${likes}</p>
-                <i class="fas fa-heart"></i>
+                    <p class="mediaLike">${likes}<i class="fas fa-heart"></i></p>
                 </div>
             `;
     }

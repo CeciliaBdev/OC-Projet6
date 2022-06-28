@@ -186,7 +186,7 @@ function lightBox(data){
    //cibler le media img/video dans le links
 
 
-   //console.log(data)
+   console.log(data)
 
 //    for (let dataset in data){
 //     const alldataset = data[dataset] //tous les datatset
@@ -208,31 +208,37 @@ function lightBox(data){
             lightboxContain.innerHTML="";
             lightboxContain.appendChild(getLightBoxDom)
         
-            //index de l'image en cours
-            let index = links.findIndex(element => element = link)
-            console.log("index", index) //index =0 pour image en cours
-            console.log("media en cours", link) //mon element clické
-            //image class="mediaGallerie"
+
+
+            const currentMedia = link.dataset.id
             
+            //index de l'image en cours
+            let index = 0;
+            index = data.findIndex((element) => element.id == currentMedia)
+            console.log("index", index) //index =0 pour image en cours
+            console.log("media en cours", currentMedia) //mon element clické
+            
+            
+
             //image precedente
             const prev = document.querySelector(".lightbox_prev")
             prev.addEventListener('click', () => {
-                index=links.length //taille de ma liste ( en boucle, dernier element)  
-                console.log("precedent")
-                console.log("index precedent",index)  
-                let prevModel = lightBoxFactory(data,link[index]) //factory avec le link à l'index precedent
-                let prevDom = prevModel.getLightBox();
-                lightboxContain.innerHTML="";
-                lightboxContain.appendChild(prevDom)
+                console.log(data[index- 1])
+                const lightboxModel = lightBoxFactory(data[index-1],link); //factory
+            const getLightBoxDom = lightboxModel.getLightBox();//template
+        
+            //j'ajoute mon image dans la lightbox
+            lightboxContain.innerHTML="";
+            lightboxContain.appendChild(getLightBoxDom)
+        
+
                 });
 
             //suivante
             const next = document.querySelector(".lightbox_next")
             next.addEventListener('click', () => {
-            console.log("suivant")
-            index = index + 1;  //le suivant
-            console.log("index suivant",index)  
-           
+            
+                console.log(data[index+ 1])
             });
         }) 
           
@@ -300,44 +306,10 @@ async function Init(){
 }
 Init();
 
+//index=links.length //taille de ma liste ( en boucle, dernier element)  
+// console.log("precedent")
+// console.log("index precedent",index)  
 
-
-// const tri = document.querySelector(".triSelect");
-    //  tri.innerHTML = `<div class="tri">Trier par</div>
-                        
-    //                     <select>
-    //                         <option value="0">Popularité</option>
-    //                         <option value="1">Titre</option>
-    //                         <option value="2">Date</option>
-    //                     </select>
-  
-    //   
-
-
-    //tri par nb de likes
-            // if(menuSelect.value === "popularité"){
-            //     console.log("Popularité")
-            // }
-                //un element                
-                // for (let like in medias ){
-                //     console.log( medias[like].likes)
-                //     resultat.push(medias[like].likes)
-                    
-                // }
-                // console.log(resultat)
-
-
-                // for ( let element in medias){
-                //     //console.log(medias[element])
-                //     medias.sort(function compare(a, b) {
-                //             if (a.likes < b.likes)
-                //                return -1;
-                //             if (a.likes > b.likes )
-                //                return 1;
-                //             return 0;
-                //           });
-                    
-                // }
-
-
-
+// console.log("suivant")
+// index = index + 1;  //le suivant
+// console.log("index suivant",index)  
