@@ -244,17 +244,31 @@ function lightBox(data){
 
             //image precedente
             const prev = document.querySelector(".lightbox_prev")
-            prev.addEventListener('click', () => {
-                console.log(data[index- 1])
-                const lightboxModel = lightBoxFactory(data[index-1], prev); //factory image précédente / element clické
-            const getLightBoxDom = lightboxModel.getLightBox();//template
-        
-            //j'ajoute mon image dans la lightbox
-            lightboxContain.innerHTML="";
-            lightboxContain.appendChild(getLightBoxDom)
-        
 
-                });
+            // prev.setAttribute("id", "952343423")
+            prev.dataset.id = data[index-1].id;
+            console.log(prev)
+
+            prev.addEventListener('click', () => {
+                const lightboxModel = lightBoxFactory(data, prev); //factory image précédente / element clické
+                const getLightBoxDom = lightboxModel.getLightBox();//template
+        
+                //j'ajoute mon image dans la lightbox
+                lightboxContain.innerHTML="";
+                lightboxContain.appendChild(getLightBoxDom)
+                // Décrémente l'index lorsque l'image précédente est chargée
+                index = index - 1
+                if(index === 0) {
+                    console.log("index", index)
+                    prev.dataset.id = data[data.length-1].id;
+                    index = data.length
+                } else {
+                    console.log("index", index)
+                    prev.dataset.id = data[index-1].id;     // Charge l'ID de la nouvelle valeur index - 1
+                }
+
+
+            });
 
             //suivante
             const next = document.querySelector(".lightbox_next")

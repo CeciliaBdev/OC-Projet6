@@ -1,14 +1,18 @@
 export function lightBoxTemplate(data, elementClicked){
     
-        //console.log(data)
         //console.log(elementClicked)
-        
+
         const idClicked = elementClicked.dataset.id;
+
         console.log("idClicked",idClicked)
-        const { image,video,title } = data.find((item) => item.id == idClicked ) 
+        console.log("data",data)
+
+
+        // const { image,video,title } = data.find((item) => item.id == idClicked )
+        const { image,video,title } = data.find(elementTab => elementTab.id == idClicked)
             //lorsque l'image correspond au bon id
         
-            if (image ){
+            if (image){
                 return `<img src="assets/images/${image}" width="400">
                         <p>${title}</p>`;
             }
@@ -17,8 +21,4 @@ export function lightBoxTemplate(data, elementClicked){
                 return  `<video controls width="400"><source src="assets/images/${video}"></video>
                 <p>${title}</p>`;
             }
-    
-       
-        
-    }
-    
+}
