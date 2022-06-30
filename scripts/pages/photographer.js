@@ -10,7 +10,7 @@ import { lightBoxFactory } from "../factories/lightbox.js";
 
 //fct recupère les données du json
 async function getPhotographers() {
-    const response = await fetch("../data/photographers.json");
+    const response = await fetch("./data/photographers.json");
     const data = await response.json(); // extrait les données du json
     
     //console.log(JSON.stringify(data)); //affichage console
@@ -106,26 +106,27 @@ function sortPopular(medias) {
       const selection = document.getElementById("select")
       selection.addEventListener('click', (e) => {
           if (e.target.value === "popularité"){
-              console.log("tri par popularité")
+              //console.log("tri par popularité")
               //console.log(medias)
               sortPopular(medias)
           }
           if (e.target.value === "date"){
-            console.log("tri par date")
+            //console.log("tri par date")
             //console.log(medias)
             sortDate(medias)
             }
             if (e.target.value === "titre"){
-                console.log("tri par titre")
-                console.log(medias)
+                //console.log("tri par titre")
+                //console.log(medias)
                 sortTitle(medias)
                 }
         const gallery = document.querySelector(".gallerie");
         gallery.innerHTML = "";
-        displayMedia(medias);
-        lightBox(medias);
-        //function likes ne fonctionne pas sur la nouvelle gallerie triée
-        //likes
+        displayMedia(medias); //j'affiche ma nouvelle gallerie triée
+        lightBox(medias); //lightbox avec le nouvel ordre de gallerie
+        //***** Erreur: function likes ne fonctionne pas sur la nouvelle gallerie triée ***//
+
+        likes(data);
       })
   }
 
@@ -153,15 +154,32 @@ function likes(data, photographer){
        //cibler le media img/video dans le links
         coeurs.forEach((element) => { //pour chaque coeur
             element.addEventListener('click', () => {
-                //console.log("test")
+
+              //si contient la class liked - 'enlève -1
+              if (element.classList.contains("liked")){
+                allLikes--;
+                likes.innerHTML=`<div class="details">
+                                <p>${allLikes}  <i class="fas fa-heart"></i></p>
+                                </div>`;
+                //console.log(element.previousSibling);
+                //texte element précedent s'incrémete
+                element.previousSibling.textContent--;
+              }
+              //si pas de classe liked (1er click) j'ajoute la classe et j'incrémente
+              else{
+                element.classList.add("liked");
                 allLikes++;
                 likes.innerHTML=`<div class="details">
-                <p>${allLikes}  <i class="fas fa-heart"></i></p>
-             </div>`;
+                                <p>${allLikes}  <i class="fas fa-heart"></i></p>
+                                </div>`;
+                //console.log(element.previousSibling);
+                //texte element précedent s'incrémete
+                element.previousSibling.textContent++;
+              }
+              
+
              
-             //console.log(element.previousSibling);
-             element.previousSibling.textContent++;
-            
+
             });
         });
        
@@ -181,8 +199,9 @@ function lightBox(data){
     const lightboxContain = document.querySelector(".lightbox_container");
     
     //tableau de mes images (tous mes articles)
-    const links = Array.from(divLightBox.querySelectorAll((" article")))
+    const links = Array.from(divLightBox.querySelectorAll(("article")))
     
+    console.log(links)
    //cibler le media img/video dans le links
 
 

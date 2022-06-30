@@ -1,8 +1,14 @@
+
+
+
 const formData = document.querySelectorAll(".formData")
 
 function displayModal() {
     const modal = document.getElementById("contact_modal");
 	modal.style.display = "block";
+    //emplacement du nom du photographe
+   const name = document.getElementById("name_photographe")
+    name.textContent = "test"
 }
 
 function closeModal() {

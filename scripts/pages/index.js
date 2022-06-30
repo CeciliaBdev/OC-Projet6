@@ -1,9 +1,9 @@
 import { photographerFactory } from "../factories/photographer.js";
 
     async function getPhotographers() {
-        const response = await fetch("../data/photographers.json");
+        const response = await fetch("./data/photographers.json");
         const data = await response.json(); // extrait les données du json
-        //console.log(JSON.stringify(data)); //affichage console
+        console.log(JSON.stringify(data)); //affichage console
         return {photographers: data.photographers};
     }
 

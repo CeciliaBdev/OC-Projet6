@@ -145,19 +145,24 @@ article video{
 }
 
 .modal header {
-    justify-content: space-between;
+    display:block;
+    /* justify-content: space-between; */
     width: 100%;
+    margin-bottom: 20px;
 }
 
 .modal header img {
+    position: fixed;
+    top: 30px;
+    right: 30px;
     cursor: pointer;
     width:42px;
 }
 
 .modal header h2 {
-    font-size: 64px;
+    font-size: 44px;
     font-weight: normal;
-    text-align: center;
+    text-align: left;
     color:#000;
 }
 
