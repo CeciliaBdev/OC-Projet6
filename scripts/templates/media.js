@@ -3,7 +3,9 @@ export function mediaTemplate(data){
 
     if (data = image){
         return ` 
-            <img src="assets/images/${image}"> 
+            
+                <img src="assets/images/${image}"> 
+            
             <div class="infos">
                 <p>${title}</p>
                 <p class="mediaLike">${likes}<i class="fas fa-heart"></i></p>

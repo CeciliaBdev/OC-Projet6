@@ -155,7 +155,7 @@ function likes(data, photographer){
         coeurs.forEach((element) => { //pour chaque coeur
             element.addEventListener('click', () => {
 
-              //si contient la class liked - 'enlève -1
+              //si contient la class liked - j'enlève -1coeur
               if (element.classList.contains("liked")){
                 allLikes--;
                 likes.innerHTML=`<div class="details">
@@ -165,7 +165,7 @@ function likes(data, photographer){
                 //texte element précedent s'incrémete
                 element.previousSibling.textContent--;
               }
-              //si pas de classe liked (1er click) j'ajoute la classe et j'incrémente
+              //si pas de classe liked (1er click) j'ajoute la classe et j'incrémente 1coeur
               else{
                 element.classList.add("liked");
                 allLikes++;
@@ -198,14 +198,14 @@ function lightBox(data){
     const lightbox = document.querySelector(".lightbox");
     const lightboxContain = document.querySelector(".lightbox_container");
     
-    //tableau de mes images (tous mes articles)
-    const links = Array.from(divLightBox.querySelectorAll(("article")))
+    //tableau de ma gallerie (toutes les videos et images)
+    const links = Array.from(divLightBox.querySelectorAll(("article img, article video")))
     
     console.log(links)
    //cibler le media img/video dans le links
 
 
-   console.log(data)
+   //console.log(data)
 
 //    for (let dataset in data){
 //     const alldataset = data[dataset] //tous les datatset
@@ -217,10 +217,11 @@ function lightBox(data){
      
     links.forEach(link => {
         link.addEventListener('click', () => {
-            console.log(link.childNodes[1])
+            // console.log(link.childNodes[1])
+            console.log(link)
             //ouverture lightbox
             lightbox.style.display = "block";
-            const lightboxModel = lightBoxFactory(data,link); //factory
+            const lightboxModel = lightBoxFactory(data,link.parentElement); //factory
             const getLightBoxDom = lightboxModel.getLightBox();//template
         
             //j'ajoute mon image dans la lightbox
