@@ -154,7 +154,7 @@ function likes(data, photographer){
        //cibler le media img/video dans le links
         coeurs.forEach((element) => { //pour chaque coeur
             element.addEventListener('click', () => {
-
+              
               //si contient la class liked - j'enlève -1coeur
               if (element.classList.contains("liked")){
                 allLikes--;
@@ -164,6 +164,8 @@ function likes(data, photographer){
                 //console.log(element.previousSibling);
                 //texte element précedent s'incrémete
                 element.previousSibling.textContent--;
+                //j'enlève la classe coeur
+                element.classList.remove("liked");
               }
               //si pas de classe liked (1er click) j'ajoute la classe et j'incrémente 1coeur
               else{
