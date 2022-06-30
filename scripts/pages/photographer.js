@@ -232,7 +232,7 @@ function lightBox(data){
         
 
 
-            const currentMedia = link.dataset.id
+            const currentMedia = link.parentElement.dataset.id
             
             //index de l'image en cours
             let index = 0;
@@ -246,7 +246,7 @@ function lightBox(data){
             const prev = document.querySelector(".lightbox_prev")
             prev.addEventListener('click', () => {
                 console.log(data[index- 1])
-                const lightboxModel = lightBoxFactory(data[index-1],link); //factory
+                const lightboxModel = lightBoxFactory(data[index-1], prev); //factory image précédente / element clické
             const getLightBoxDom = lightboxModel.getLightBox();//template
         
             //j'ajoute mon image dans la lightbox
