@@ -33,7 +33,6 @@ async function getSelectedPhotographer(id){
     const photographerMedias = medias.filter(media => media.photographerId === id);
 
     return {selectedPhotgrapher, photographerMedias};
-
 }
 
 //fct affichage dans le header - profil du photographe
@@ -42,8 +41,7 @@ function displayPhotographer(photographer){
     const photographerHeader = document.querySelector(".photograph-header");
     const photographerModel = profileFactory(photographer);
         const ProfileDOM = photographerModel.getProfileDOM();
-        photographerHeader.appendChild(ProfileDOM);
-    
+        photographerHeader.appendChild(ProfileDOM);    
 }
 
 //fct affichage des medias dans la gallerie
@@ -52,12 +50,10 @@ function displayMedia(medias){
     medias.forEach((media) => {
         const mediaModel = mediaFactory(media);
         const mediaCardDom = mediaModel.getMediaCardDom();
-        gallerie.appendChild(mediaCardDom);
-        
+        gallerie.appendChild(mediaCardDom);       
     });
     //mon tableau d'objet
-    //console.log(medias)
-    
+    //console.log(medias)   
 }
 
 //function tri des medias
@@ -72,65 +68,61 @@ function sortPopular(medias) {
       }
       return 0;
     });
-  }
+}
 
-  //par date ( date la plus récente)
-  function sortDate(medias) {
-    medias.sort((a, b) => {
-      if (a.date < b.date) {
-        return 1;
-      }
-      if (a.date > b.date) {
-        return -1;
-      }
-      return 0;
-    });
-  }
-
-  //par ordre alphabétique par titre
-  function sortTitle(medias) {
-    medias.sort((a, b) => {
-      if (a.title > b.title) {
-        return 1;
-      }
-      if (a.title < b.title) {
-        return -1;
-      }
-      return 0;
-    });
-  }
+//par date ( date la plus récente)
+function sortDate(medias) {
+  medias.sort((a, b) => {
+    if (a.date < b.date) {
+      return 1;
+    }
+    if (a.date > b.date) {
+      return -1;
+    }
+    return 0;
+  });
+}
+//par ordre alphabétique par titre
+function sortTitle(medias) {
+  medias.sort((a, b) => {
+    if (a.title > b.title) {
+      return 1;
+    }
+    if (a.title < b.title) {
+      return -1;
+    }
+    return 0;
+  });
+}
   
-
-  //tri selon le choix du select
-  function sortMedia(medias){
-      const selection = document.getElementById("select")
-      selection.addEventListener('click', (e) => {
-          if (e.target.value === "popularité"){
-              //console.log("tri par popularité")
-              //console.log(medias)
-              sortPopular(medias)
-          }
-          if (e.target.value === "date"){
-            //console.log("tri par date")
+//tri selon le choix du select
+function sortMedia(medias){
+  const selection = document.getElementById("select")
+  selection.addEventListener('click', (e) => {
+      if (e.target.value === "popularité"){
+          //console.log("tri par popularité")
+          //console.log(medias)
+          sortPopular(medias)
+      }
+      if (e.target.value === "date"){
+        //console.log("tri par date")
+        //console.log(medias)
+        sortDate(medias)
+        }
+        if (e.target.value === "titre"){
+            //console.log("tri par titre")
             //console.log(medias)
-            sortDate(medias)
+            sortTitle(medias)
             }
-            if (e.target.value === "titre"){
-                //console.log("tri par titre")
-                //console.log(medias)
-                sortTitle(medias)
-                }
-        const gallery = document.querySelector(".gallerie");
-        gallery.innerHTML = "";
-        displayMedia(medias); //j'affiche ma nouvelle gallerie triée
-        lightBox(medias); //lightbox avec le nouvel ordre de gallerie
-        //***** Erreur: function likes ne fonctionne pas sur la nouvelle gallerie triée ***//
+    const gallery = document.querySelector(".gallerie");
+    gallery.innerHTML = "";
+    displayMedia(medias); //j'affiche ma nouvelle gallerie triée
+    lightBox(medias); //lightbox avec le nouvel ordre de gallerie
+    //***** Erreur: function likes ne fonctionne pas sur la nouvelle gallerie triée ***//
 
-        likes(data);
-      })
-  }
-
-
+    likes(data);
+  })
+}
 
 //func likes
 function likes(data, photographer){
@@ -178,10 +170,6 @@ function likes(data, photographer){
                 //texte element précedent s'incrémete
                 element.previousSibling.textContent++;
               }
-              
-
-             
-
             });
         });
        
@@ -192,8 +180,6 @@ function likes(data, photographer){
         price.appendChild(userCardDOM);
     }   
 
-
-    //fonctionne ouverture lightbox
 // //lightbox
 function lightBox(data){
     const divLightBox = document.querySelector(".gallerie");
@@ -205,18 +191,9 @@ function lightBox(data){
     
     console.log(links)
    //cibler le media img/video dans le links
-
-
    //console.log(data)
 
-//    for (let dataset in data){
-//     const alldataset = data[dataset] //tous les datatset
-//     console.log(alldataset)   //tous mes id    
-//    }
-//    console.log("1er Id:  "+data[0].id) //1er Id
-
-    
-     
+   //au click d'une image ou video
     links.forEach(link => {
         link.addEventListener('click', () => {
             // console.log(link.childNodes[1])
@@ -230,29 +207,22 @@ function lightBox(data){
             lightboxContain.innerHTML="";
             lightboxContain.appendChild(getLightBoxDom)
         
-
-
-            const currentMedia = link.parentElement.dataset.id
-            
+            const currentMedia = link.parentElement.dataset.id 
             //index de l'image en cours
             let index = 0;
             index = data.findIndex((element) => element.id == currentMedia)
             console.log("index", index) //index =0 pour image en cours
             console.log("media en cours", currentMedia) //mon element clické
             
-            
 
             //image precedente
             const prev = document.querySelector(".lightbox_prev")
-
             // prev.setAttribute("id", "952343423")
             prev.dataset.id = data[index-1].id;
             console.log(prev)
-
             prev.addEventListener('click', () => {
                 const lightboxModel = lightBoxFactory(data, prev); //factory gallerie / element clické
                 const getLightBoxDom = lightboxModel.getLightBox();//template
-        
                 //j'ajoute mon image dans la lightbox
                 lightboxContain.innerHTML="";
                 lightboxContain.appendChild(getLightBoxDom)
@@ -266,8 +236,6 @@ function lightBox(data){
                     console.log("index", index)
                     prev.dataset.id = data[index-1].id;     // Charge l'ID de la nouvelle valeur index - 1
                 }
-
-
             });
 
             //image suivante
@@ -275,16 +243,13 @@ function lightBox(data){
             //boutton next: id de l'image suivante
             next.dataset.id = data[index+1].id
             console.log(next)
-
             next.addEventListener('click', () => {
                 console.log(data[index+ 1])
                 const lightboxModel = lightBoxFactory(data,next) //factory galerie / image suivante
                 const getLightBoxDom = lightboxModel.getLightBox(); //template
-
                 //j'ajoute mon image dans la lightbox
                 lightboxContain.innerHTML="";
                 lightboxContain.appendChild(getLightBoxDom)
-
                 //j'incrémente lorsque l'image est chargée
                 index = index + 1;
                 if (index === data.length -1){
@@ -295,60 +260,42 @@ function lightBox(data){
                 }else{
                   next.dataset.id = data[index+1].id
                   console.log("index suivant",index)
-                }
-                
+                }         
             });
-        }) 
-          
-    })
-
-    
-    
-        
-      
-
-   
+        })         
+    })   
 }
-//------------------------//
-      
-    
-    
 
 
-    //fermeture lightbox
-    function closeBox(){
-        const lightbox = document.querySelector(".lightbox");
-        lightbox.style.display="none";
-        
-    }
-    //fermeture au click souris
-    const closeLightbox = document.querySelector(".lightbox_close");
-    closeLightbox.addEventListener('click', () => {
-            closeBox();
-            
-    })
-    //evenements clavier
-
-    document.addEventListener('keyup', (event) => {
-        //console.log(event)
-        //si appuie sur escape
-        if(event.key == 'Escape'){
-            closeBox();
-        }
-        //appui fleche droite
-        if(event.key == 'ArrowRight'){
-            console.log("fleche droite")
-        }
-        //appui fleche gauche
-        if(event.key == 'ArrowLeft'){
-            console.log("fleche gauche")
-        }
-    })
+//fermeture lightbox
+function closeBox(){
+  const lightbox = document.querySelector(".lightbox");
+  lightbox.style.display="none";
+  
+}
+//fermeture au click souris
+const closeLightbox = document.querySelector(".lightbox_close");
+closeLightbox.addEventListener('click', () => {
+  closeBox(); 
+})
+//evenements clavier
+document.addEventListener('keyup', (event) => {
+  //console.log(event)
+  //si appuie sur escape
+  if(event.key == 'Escape'){
+      closeBox();
+  }
+  //appui fleche droite
+  if(event.key == 'ArrowRight'){
+      console.log("fleche droite")
+  }
+  //appui fleche gauche
+  if(event.key == 'ArrowLeft'){
+      console.log("fleche gauche")
+  }
+})
 
  
-
-
-
 
 //fct initialisation
 async function Init(){
@@ -359,15 +306,7 @@ async function Init(){
     displayMedia(photographerMedias);
     likes(photographerMedias,selectedPhotgrapher);
     lightBox(photographerMedias);
-    sortMedia(photographerMedias)
-    
+    sortMedia(photographerMedias)   
 }
 Init();
-
-//index=links.length //taille de ma liste ( en boucle, dernier element)  
-// console.log("precedent")
-// console.log("index precedent",index)  
-
-// console.log("suivant")
-// index = index + 1;  //le suivant
-// console.log("index suivant",index)  
+ 
