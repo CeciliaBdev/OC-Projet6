@@ -51,7 +51,7 @@ h2{
     margin-right: 50px;
 }
 
-.contact_button,#select {
+.contact_button {
     font-size: 20px;
     font-weight: bold;
     color: white;
@@ -71,9 +71,76 @@ h2{
 }
 /* select tri */
 label {
+    
     margin-left: 100px;
     margin-right: 50px;
 }
+li, .repere, .dropdown1, .dropdown2 {
+    font-size: 20px;
+    font-weight: bold;
+    color: white;
+    padding: 11px;
+    width: 170px;
+    height: 70px;
+    border: none;
+    background-color: #901C1C;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: left;
+    line-height: 70px;
+}
+.repere{
+   
+    position:absolute;
+    top:400px;
+    left:200px;
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+} 
+.dropdown1{
+    
+    position:absolute;
+    top:493px;
+    left:200px;  
+    overflow:hidden;
+} 
+.dropdown2{
+    z-index:20;
+    position:absolute;
+    top:587px;
+    left:200px; 
+    overflow: hidden; 
+}
+
+li.dropdown1, li.dropdown2 {
+    display:none;
+}
+li.active{
+    display:block;
+}
+
+.repere.active i{
+    
+    transform: rotate(-180deg);
+}
+.repere.active{
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+}
+input{
+    background: transparent;
+    border:none;
+    padding:10px 0;
+    outline: none;
+}
+input::placeholder{
+    color:white;
+    font-size: 20px;
+    font-weight: bold;
+}
+
 
 
 

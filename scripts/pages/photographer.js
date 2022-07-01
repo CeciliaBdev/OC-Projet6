@@ -57,6 +57,20 @@ function displayMedia(medias){
 }
 
 //function tri des medias
+
+//menu deroulant de la liste
+let repere = document.querySelector(".repere")
+let chevron = document.querySelector('li i');
+let liste1 = document.querySelector(".dropdown1")
+let liste2 = document.querySelector(".dropdown2")
+chevron.addEventListener('click', () => {
+    console.log("click")
+    repere.classList.toggle('active') //rotation du chevron avec ajout active (css)
+    liste1.classList.toggle('active')
+    liste2.classList.toggle('active')
+})
+
+
 //par nb de likes - popularité
 function sortPopular(medias) {
     medias.sort((a, b) => {
@@ -97,31 +111,57 @@ function sortTitle(medias) {
   
 //tri selon le choix du select
 function sortMedia(medias){
-  const selection = document.getElementById("select")
-  selection.addEventListener('click', (e) => {
-      if (e.target.value === "popularité"){
-          //console.log("tri par popularité")
-          //console.log(medias)
-          sortPopular(medias)
-      }
-      if (e.target.value === "date"){
-        //console.log("tri par date")
-        //console.log(medias)
-        sortDate(medias)
-        }
-        if (e.target.value === "titre"){
-            //console.log("tri par titre")
-            //console.log(medias)
-            sortTitle(medias)
-            }
+
+  const valuePopularite = document.querySelector('input')
+  valuePopularite.addEventListener('click', () => {
+     
+     valuePopularite.placeholder="Popularité"
+     repere.classList.toggle('active') //rotation du chevron avec ajout active (css)
+    liste1.classList.toggle('active')
+    liste2.classList.toggle('active')
+     sortPopular(medias)
+     const gallery = document.querySelector(".gallerie");
+    gallery.innerHTML = "";
+    displayMedia(medias); //j'affiche ma nouvelle gallerie triée
+    lightBox(medias); //lightbox avec le nouvel ordre de gallerie
+  })
+
+  const valueDate = document.getElementById("date")
+  valueDate.addEventListener('click',() => {
+    console.log(valueDate.textContent || valueDate.innerText);
+    valuePopularite.placeholder="Date"
+    valueDate.textContent="Popularité"
+    repere.classList.toggle('active') //rotation du chevron avec ajout active (css)
+    liste1.classList.toggle('active')
+    liste2.classList.toggle('active')
+    sortDate(medias)
     const gallery = document.querySelector(".gallerie");
     gallery.innerHTML = "";
     displayMedia(medias); //j'affiche ma nouvelle gallerie triée
     lightBox(medias); //lightbox avec le nouvel ordre de gallerie
-    //***** Erreur: function likes ne fonctionne pas sur la nouvelle gallerie triée ***//
+})
 
+const valueTitre = document.getElementById("titre")
+valueTitre.addEventListener('click', () => {
+    console.log(valueTitre.textContent || valueTitre.innerText);
+    valuePopularite.placeholder="Titre"
+    repere.classList.toggle('active') //rotation du chevron avec ajout active (css)
+    liste1.classList.toggle('active')
+    liste2.classList.toggle('active')
+    sortTitle(medias)
+    const gallery = document.querySelector(".gallerie");
+    gallery.innerHTML = "";
+    displayMedia(medias); //j'affiche ma nouvelle gallerie triée
+    lightBox(medias); //lightbox avec le nouvel ordre de gallerie
+})
+
+    // const gallery = document.querySelector(".gallerie");
+    // gallery.innerHTML = "";
+    // displayMedia(medias); //j'affiche ma nouvelle gallerie triée
+    // lightBox(medias); //lightbox avec le nouvel ordre de gallerie
+    //***** Erreur: function likes ne fonctionne pas sur la nouvelle gallerie triée ***//
     likes(data);
-  })
+  
 }
 
 //func likes
