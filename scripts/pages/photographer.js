@@ -250,7 +250,7 @@ function lightBox(data){
             console.log(prev)
 
             prev.addEventListener('click', () => {
-                const lightboxModel = lightBoxFactory(data, prev); //factory image précédente / element clické
+                const lightboxModel = lightBoxFactory(data, prev); //factory gallerie / element clické
                 const getLightBoxDom = lightboxModel.getLightBox();//template
         
                 //j'ajoute mon image dans la lightbox
@@ -270,11 +270,33 @@ function lightBox(data){
 
             });
 
-            //suivante
+            //image suivante
             const next = document.querySelector(".lightbox_next")
+            //boutton next: id de l'image suivante
+            next.dataset.id = data[index+1].id
+            console.log(next)
+
             next.addEventListener('click', () => {
-            
                 console.log(data[index+ 1])
+                const lightboxModel = lightBoxFactory(data,next) //factory galerie / image suivante
+                const getLightBoxDom = lightboxModel.getLightBox(); //template
+
+                //j'ajoute mon image dans la lightbox
+                lightboxContain.innerHTML="";
+                lightboxContain.appendChild(getLightBoxDom)
+
+                //j'incrémente lorsque l'image est chargée
+                index = index + 1;
+                if (index === data.length -1){
+                  console.log("fin de tableau")
+                  //on repart du début du tableau
+                  next.dataset.id = data[0].id
+                  index = 0
+                }else{
+                  next.dataset.id = data[index+1].id
+                  console.log("index suivant",index)
+                }
+                
             });
         }) 
           
