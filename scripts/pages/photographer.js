@@ -293,8 +293,16 @@ function lightBox(data){
             //boutton next: id de l'image suivante
             next.dataset.id = data[index+1].id
             console.log(next)
-            next.addEventListener('click', () => {
-                console.log(data[index+ 1])
+            next.addEventListener('click', () => nextSlide());
+            document.addEventListener('keyup', (event) => {
+              //appui fleche gauche
+              if(event.key == 'ArrowRight'){
+                  //console.log("fleche gauche")
+                    nextSlide();          
+              }
+            })
+            function nextSlide(){
+              console.log(data[index+ 1])
                 const lightboxModel = lightBoxFactory(data,next) //factory galerie / image suivante
                 const getLightBoxDom = lightboxModel.getLightBox(); //template
                 //j'ajoute mon image dans la lightbox
@@ -311,7 +319,7 @@ function lightBox(data){
                   next.dataset.id = data[index+1].id
                   console.log("index suivant",index)
                 }         
-            });
+            }
         })         
     })   
 }
