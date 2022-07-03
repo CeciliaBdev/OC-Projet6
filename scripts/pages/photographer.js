@@ -159,8 +159,9 @@ valueTitre.addEventListener('click', () => {
     // gallery.innerHTML = "";
     // displayMedia(medias); //j'affiche ma nouvelle gallerie triée
     // lightBox(medias); //lightbox avec le nouvel ordre de gallerie
+
     //***** Erreur: function likes ne fonctionne pas sur la nouvelle gallerie triée ***//
-    likes(data);
+    //likes(data);
   
 }
 
@@ -254,30 +255,39 @@ function lightBox(data){
             console.log("index", index) //index =0 pour image en cours
             console.log("media en cours", currentMedia) //mon element clické
             
-
-            //image precedente
+              //image precedente
             const prev = document.querySelector(".lightbox_prev")
             // prev.setAttribute("id", "952343423")
             prev.dataset.id = data[index-1].id;
             console.log(prev)
-            prev.addEventListener('click', () => {
-                const lightboxModel = lightBoxFactory(data, prev); //factory gallerie / element clické
-                const getLightBoxDom = lightboxModel.getLightBox();//template
-                //j'ajoute mon image dans la lightbox
-                lightboxContain.innerHTML="";
-                lightboxContain.appendChild(getLightBoxDom)
-                // Décrémente l'index lorsque l'image précédente est chargée
-                index = index - 1
-                if(index === 0) {
-                    console.log("index", index)
-                    prev.dataset.id = data[data.length-1].id;
-                    index = data.length
-                } else {
-                    console.log("index", index)
-                    prev.dataset.id = data[index-1].id;     // Charge l'ID de la nouvelle valeur index - 1
-                }
-            });
+            prev.addEventListener('click', () => prevSlide());
+            document.addEventListener('keyup', (event) => {
+              //appui fleche gauche
+              if(event.key == 'ArrowLeft'){
+                  //console.log("fleche gauche")
+                    prevSlide();          
+              }
+            })
 
+            function prevSlide() {
+              const lightboxModel = lightBoxFactory(data, prev); //factory gallerie / element clické
+              const getLightBoxDom = lightboxModel.getLightBox();//template
+              //j'ajoute mon image dans la lightbox
+              lightboxContain.innerHTML="";
+              lightboxContain.appendChild(getLightBoxDom)
+              // Décrémente l'index lorsque l'image précédente est chargée
+              index = index - 1
+              if(index === 0) {
+                  console.log("index", index)
+                  prev.dataset.id = data[data.length-1].id;
+                  index = data.length
+              } else {
+                  console.log("index", index)
+                  prev.dataset.id = data[index-1].id;     // Charge l'ID de la nouvelle valeur index - 1
+              }
+          }
+
+            
             //image suivante
             const next = document.querySelector(".lightbox_next")
             //boutton next: id de l'image suivante
@@ -328,10 +338,6 @@ document.addEventListener('keyup', (event) => {
   //appui fleche droite
   if(event.key == 'ArrowRight'){
       console.log("fleche droite")
-  }
-  //appui fleche gauche
-  if(event.key == 'ArrowLeft'){
-      console.log("fleche gauche")
   }
 })
 
