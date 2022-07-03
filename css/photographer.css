@@ -1,5 +1,10 @@
 #contact_modal {
     display: none;
+    position: absolute;
+    top:0;
+    left:0;
+    right:0;
+    bottom:0;
 }
 main{
     z-index:1;
@@ -129,7 +134,7 @@ li.active{
     justify-content: space-between;
     align-items: center;
 }
-input{
+input#select{
     background: transparent;
     border:none;
     padding:10px 0;
@@ -209,6 +214,7 @@ article video{
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
+    padding-top: 15px;
 }
 
 .modal header {
@@ -227,7 +233,7 @@ article video{
 }
 
 .modal header h2 {
-    font-size: 44px;
+    font-size: 34px;
     font-weight: normal;
     text-align: left;
     color:#000;
@@ -243,7 +249,7 @@ form {
 
 form label {
     color: #312E2E;
-    font-size: 36px;
+    font-size: 26px;
     margin:0;
 }
 
@@ -257,13 +263,13 @@ form div {
 
 form input {
     width: 100%;
-    height: 68px;
+    height: 48px;
     border: none;
     border-radius: 5px;
 }
 textarea{
     width:100%;
-    height:120px;
+    height:100px;
     border-radius: 5px;
     border: none;
 }
@@ -285,6 +291,7 @@ form .contact_button:hover, form .contact_button:focus{
   .formData[data-error-visible="true"]::after {
     opacity: 1;
   }
+  
 
   /* lightbox */
   .lightbox{

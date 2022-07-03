@@ -5,6 +5,7 @@ const formData = document.querySelectorAll(".formData")
 function displayModal() {
     const modal = document.getElementById("contact_modal");
 	modal.style.display = "block";
+    modal.style.backgroundColor="rgba(255,255,255,0.7)";;
     //emplacement du nom du photographe
     const name = document.getElementById("name_photographe")
     //console.log(name.textContent)
