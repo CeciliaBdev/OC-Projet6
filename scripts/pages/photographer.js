@@ -74,6 +74,7 @@ chevron.addEventListener('click', () => {
 //par nb de likes - popularité
 function sortPopular(medias) {
     medias.sort((a, b) => {
+      
       if (a.likes < b.likes) {
         return 1;
       }
@@ -124,6 +125,7 @@ function sortMedia(medias){
     gallery.innerHTML = "";
     displayMedia(medias); //j'affiche ma nouvelle gallerie triée
     lightBox(medias); //lightbox avec le nouvel ordre de gallerie
+    likes(medias)
   })
 
   const valueDate = document.getElementById("date")
@@ -139,6 +141,7 @@ function sortMedia(medias){
     gallery.innerHTML = "";
     displayMedia(medias); //j'affiche ma nouvelle gallerie triée
     lightBox(medias); //lightbox avec le nouvel ordre de gallerie
+    likes(medias)
 })
 
 const valueTitre = document.getElementById("titre")
@@ -153,20 +156,13 @@ valueTitre.addEventListener('click', () => {
     gallery.innerHTML = "";
     displayMedia(medias); //j'affiche ma nouvelle gallerie triée
     lightBox(medias); //lightbox avec le nouvel ordre de gallerie
+    likes(medias)
 })
-
-    // const gallery = document.querySelector(".gallerie");
-    // gallery.innerHTML = "";
-    // displayMedia(medias); //j'affiche ma nouvelle gallerie triée
-    // lightBox(medias); //lightbox avec le nouvel ordre de gallerie
-
-    //***** Erreur: function likes ne fonctionne pas sur la nouvelle gallerie triée ***//
-    //likes(data);
   
 }
 
 //func likes
-function likes(data, photographer){
+function likes(data){
 
         //init somme
         let allLikes = 0;
@@ -176,7 +172,7 @@ function likes(data, photographer){
         });
         //console.log(allLikes);
         const likes = document.querySelector(".likes");
-        const price = document.querySelector(".price")
+        
         likes.innerHTML =`<div class="details">
                             <p>${allLikes}  <i class="fas fa-heart"></i></p>
                          </div>`;
@@ -213,13 +209,17 @@ function likes(data, photographer){
               }
             });
         });
-       
+  }
+    function price(photographer){
+      const price = document.querySelector(".price")
         //renvoi le profil photograph (de la factory)
         //faire une nouvelle factory avec juste le price
         const photographerModel = priceFactory(photographer); //creation de la const qui met en place la f. de create pour un photographe
         const userCardDOM = photographerModel.getUserPriceDOM(); //creation de la const qui regroupe la 1ère et la 2ème fonction de create pour un photographe
         price.appendChild(userCardDOM);
-    }   
+    }
+      
+       
 
 // //lightbox
 function lightBox(data){
@@ -358,7 +358,8 @@ async function Init(){
     const {selectedPhotgrapher, photographerMedias} = await getSelectedPhotographer(photographerId);
     displayPhotographer(selectedPhotgrapher);
     displayMedia(photographerMedias);
-    likes(photographerMedias,selectedPhotgrapher);
+    likes(photographerMedias);
+    price(selectedPhotgrapher)
     lightBox(photographerMedias);
     sortMedia(photographerMedias)   
 }
