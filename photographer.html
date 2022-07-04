@@ -17,11 +17,11 @@
       <div class="photograph-header">  
       </div>
       <label for="select">Trier Par: </label>
-      <ul>
-        <li class="repere" id="popularite">
-            <input type="text" placeholder="Popularité" id="select"><i class="fas fa-chevron-up"></i></li>
-        <li class=" dropdown dropdown1" id="date" >Date</li>
-        <li class=" dropdown dropdown2" id="titre" >Titre</li>
+      <ul aria-label="Filtre" >
+        <li class="repere" id="popularite" tabindex="0">
+            <input type="text" placeholder="Popularité" id="select" tabindex="0"><i class="fas fa-chevron-up" alt="chevron de selection" tabindex="0"></i></li>
+        <li class=" dropdown dropdown1" id="date" tabindex="0" >Date</li>
+        <li class=" dropdown dropdown2" id="titre" tabindex="0" >Titre</li>
     </ul>
 
       <div class="gallerie"></div>
@@ -56,16 +56,16 @@
             <textarea name="textarea" id="textarea" ></textarea>
         </div>
 			
-          <button class="contact_button" aria-label="Envoyer" >Envoyer</button>
+          <button class="contact_button" aria-label="Envoyer le formulaire" >Envoyer</button>
 				</form>
 			</div>
 		</div>
 
     <!-- lightbox -->
     <div class="lightbox">
-      <button class="lightbox_close">Fermer</button>
-      <button class="lightbox_prev">Précédent</button>
-      <button class="lightbox_next">Suivant</button>
+      <button class="lightbox_close" aria-label="Fermer la lightbox"></button>
+      <button class="lightbox_prev" aria-label="retour précédent"></button>
+      <button class="lightbox_next" aria-label="Suivant"></button>
       <div class="lightbox_container"></div>
     </div>
     <script src="./scripts/pages/photographer.js" type="module"></script>

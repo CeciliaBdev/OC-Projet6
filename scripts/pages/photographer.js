@@ -69,6 +69,14 @@ chevron.addEventListener('click', () => {
     liste1.classList.toggle('active')
     liste2.classList.toggle('active')
 })
+chevron.addEventListener('keyup', (event) => {
+  console.log(event)
+  if(event.key == 'Enter'){
+    repere.classList.toggle('active') //rotation du chevron avec ajout active (css)
+    liste1.classList.toggle('active')
+    liste2.classList.toggle('active')
+  }
+})
 
 
 //par nb de likes - popularité
@@ -114,8 +122,11 @@ function sortTitle(medias) {
 function sortMedia(medias){
 
   const valuePopularite = document.querySelector('input')
-  valuePopularite.addEventListener('click', () => {
-     
+  const valueDate = document.getElementById("date")
+  const valueTitre = document.getElementById("titre")
+
+  valuePopularite.addEventListener('click', () => valuePopselect())
+  function valuePopselect(){
      valuePopularite.placeholder="Popularité"
      repere.classList.toggle('active') //rotation du chevron avec ajout active (css)
     liste1.classList.toggle('active')
@@ -126,10 +137,18 @@ function sortMedia(medias){
     displayMedia(medias); //j'affiche ma nouvelle gallerie triée
     lightBox(medias); //lightbox avec le nouvel ordre de gallerie
     likes(medias)
+  } 
+  valuePopularite.addEventListener('keyup', (event) => {
+    //console.log(event)
+    //si appuie sur escape
+    if(event.key == 'Enter'){
+      valuePop();
+    }
   })
 
-  const valueDate = document.getElementById("date")
-  valueDate.addEventListener('click',() => {
+  
+  valueDate.addEventListener('click',() => valueDateSelect()) 
+  function valueDateSelect(){
     console.log(valueDate.textContent || valueDate.innerText);
     valuePopularite.placeholder="Date"
     valueDate.textContent="Popularité"
@@ -142,10 +161,19 @@ function sortMedia(medias){
     displayMedia(medias); //j'affiche ma nouvelle gallerie triée
     lightBox(medias); //lightbox avec le nouvel ordre de gallerie
     likes(medias)
+  }
+valueDate.addEventListener('keyup', (event) => {
+  //console.log(event)
+  //si appuie sur escape
+  if(event.key == 'Enter'){
+    valueSelect();
+  }
 })
 
-const valueTitre = document.getElementById("titre")
-valueTitre.addEventListener('click', () => {
+
+
+valueTitre.addEventListener('click', () => valueTitreSelect()) 
+function valueTitreSelect(){
     console.log(valueTitre.textContent || valueTitre.innerText);
     valuePopularite.placeholder="Titre"
     repere.classList.toggle('active') //rotation du chevron avec ajout active (css)
@@ -157,7 +185,15 @@ valueTitre.addEventListener('click', () => {
     displayMedia(medias); //j'affiche ma nouvelle gallerie triée
     lightBox(medias); //lightbox avec le nouvel ordre de gallerie
     likes(medias)
-})
+  }
+  valueTitre.addEventListener('keyup', (event) => {
+    //console.log(event)
+    //si appuie sur escape
+    if(event.key == 'Enter'){
+      valueTitreSelect();
+    }
+  })
+
   
 }
 

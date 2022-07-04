@@ -7,7 +7,7 @@ export function profileTemplate(data){
             <p class="tagline">${tagline}</p>
             </div>
         
-            <button class="contact_button" onclick="displayModal()">Contactez-moi</button>
+            <button class="contact_button" onclick="displayModal()" aria-label="Formulaire de contact">Contactez-moi</button>
             <img src="assets/photographers/${portrait}" alt="portrait du photographe">
             `;
 }
