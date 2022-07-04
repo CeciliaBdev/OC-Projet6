@@ -4,7 +4,7 @@ export function mediaTemplate(data){
     if (data = image){
         return ` 
             
-                <img src="assets/images/${image}"> 
+                <img src="assets/images/${image}" alt="photographie ${title}"> 
             
             <div class="infos">
                 <p>${title}</p>
@@ -14,7 +14,7 @@ export function mediaTemplate(data){
     }
     if (data = video)
     {
-        return ` <video controls  ><source src="assets/images/${video}"></video>
+        return ` <video controls><source src="assets/images/${video}"></video>
                 <div class="infos">
                     <p>${title}</p>
                     <p class="mediaLike">${likes}<i class="fas fa-heart"></i></p>

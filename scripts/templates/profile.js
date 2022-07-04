@@ -8,7 +8,7 @@ export function profileTemplate(data){
             </div>
         
             <button class="contact_button" onclick="displayModal()">Contactez-moi</button>
-            <img src="assets/photographers/${portrait}">
+            <img src="assets/photographers/${portrait}" alt="portrait du photographe">
             `;
 }
 

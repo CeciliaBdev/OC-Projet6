@@ -13,7 +13,7 @@ export function lightBoxTemplate(data, elementClicked){
             //lorsque l'image correspond au bon id
         
             if (image){
-                return `<img src="assets/images/${image}" width="400">
+                return `<img src="assets/images/${image}" width="400" alt="Photographie">
                         <p>${title}</p>`;
             }
              

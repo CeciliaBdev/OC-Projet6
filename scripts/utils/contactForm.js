@@ -1,21 +1,36 @@
 
 
 const formData = document.querySelectorAll(".formData")
+const main = document.getElementById("main")
 
 function displayModal() {
     const modal = document.getElementById("contact_modal");
 	modal.style.display = "block";
+    modal.removeAttribute('aria-hidden');
+    modal.setAttribute('aria-modal',true)
     modal.style.backgroundColor="rgba(255,255,255,0.7)";;
     //emplacement du nom du photographe
     const name = document.getElementById("name_photographe")
     //console.log(name.textContent)
+    main.style.display="none"
     
 }
 
 
+document.addEventListener('keyup', (event) => {
+    //console.log(event)
+    //si appuie sur escape
+    if(event.key == 'Escape'){
+        closeModal(); //fermeture modal de contact
+    }
+  })
+
  function closeModal() {
     const modal = document.getElementById("contact_modal");
     modal.style.display = "none";
+    modal.setAttribute('aria-hidden',true);
+    modal.removeAttribute('aria-modal')
+    main.style.display="block"
 }
 
 

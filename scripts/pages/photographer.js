@@ -209,19 +209,21 @@ function likes(data){
               }
             });
         });
-  }
-    function price(photographer){
-      const price = document.querySelector(".price")
-        //renvoi le profil photograph (de la factory)
-        //faire une nouvelle factory avec juste le price
-        const photographerModel = priceFactory(photographer); //creation de la const qui met en place la f. de create pour un photographe
-        const userCardDOM = photographerModel.getUserPriceDOM(); //creation de la const qui regroupe la 1ère et la 2ème fonction de create pour un photographe
-        price.appendChild(userCardDOM);
-    }
+}
+
+//prix du photographe - banniere infos en bas
+function price(photographer){
+  const price = document.querySelector(".price")
+    //renvoi le profil photograph (de la factory)
+    //faire une nouvelle factory avec juste le price
+    const photographerModel = priceFactory(photographer); //creation de la const qui met en place la f. de create pour un photographe
+    const userCardDOM = photographerModel.getUserPriceDOM(); //creation de la const qui regroupe la 1ère et la 2ème fonction de create pour un photographe
+    price.appendChild(userCardDOM);
+}
       
        
 
-// //lightbox
+// lightbox
 function lightBox(data){
     const divLightBox = document.querySelector(".gallerie");
     const lightbox = document.querySelector(".lightbox");
@@ -324,8 +326,8 @@ function lightBox(data){
     })   
 }
 
-
-//fermeture lightbox
+//---- Fermeture Lightbox
+//fonction
 function closeBox(){
   const lightbox = document.querySelector(".lightbox");
   lightbox.style.display="none";
@@ -342,10 +344,6 @@ document.addEventListener('keyup', (event) => {
   //si appuie sur escape
   if(event.key == 'Escape'){
       closeBox();
-  }
-  //appui fleche droite
-  if(event.key == 'ArrowRight'){
-      console.log("fleche droite")
   }
 })
 
