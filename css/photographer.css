@@ -203,6 +203,7 @@ article video{
     background-color: #DB8876;
     width: 50%;
     height:90vh;
+    max-height: calc(100vh - 20px);
     display: flex;
     flex-direction: column;
     align-items: center;
