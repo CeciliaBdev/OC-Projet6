@@ -121,16 +121,13 @@ function sortTitle(medias) {
 //tri selon le choix du select
 function sortMedia(medias){
 
-  const valuePopularite = document.querySelector('input')
+  const valuePopularite = document.querySelector(".repere")
   const valueDate = document.getElementById("date")
   const valueTitre = document.getElementById("titre")
 
   valuePopularite.addEventListener('click', () => valuePopselect())
   function valuePopselect(){
-     valuePopularite.placeholder="Popularité"
-     repere.classList.toggle('active') //rotation du chevron avec ajout active (css)
-    liste1.classList.toggle('active')
-    liste2.classList.toggle('active')
+      
      sortPopular(medias)
      const gallery = document.querySelector(".gallerie");
     gallery.innerHTML = "";
@@ -142,7 +139,8 @@ function sortMedia(medias){
     //console.log(event)
     //si appuie sur escape
     if(event.key == 'Enter'){
-      valuePop();
+      console.log("select par touche Entrée")
+      valuePopselect();
     }
   })
 
@@ -150,8 +148,7 @@ function sortMedia(medias){
   valueDate.addEventListener('click',() => valueDateSelect()) 
   function valueDateSelect(){
     console.log(valueDate.textContent || valueDate.innerText);
-    valuePopularite.placeholder="Date"
-    valueDate.textContent="Popularité"
+   
     repere.classList.toggle('active') //rotation du chevron avec ajout active (css)
     liste1.classList.toggle('active')
     liste2.classList.toggle('active')
@@ -175,7 +172,7 @@ valueDate.addEventListener('keyup', (event) => {
 valueTitre.addEventListener('click', () => valueTitreSelect()) 
 function valueTitreSelect(){
     console.log(valueTitre.textContent || valueTitre.innerText);
-    valuePopularite.placeholder="Titre"
+    
     repere.classList.toggle('active') //rotation du chevron avec ajout active (css)
     liste1.classList.toggle('active')
     liste2.classList.toggle('active')
