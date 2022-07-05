@@ -134,18 +134,8 @@ li.active{
     justify-content: space-between;
     align-items: center;
 }
-input#select{
-    background: transparent;
-    border:none;
-    padding:10px 0;
-    outline: none;
-}
-input::placeholder{
-    color:white;
-    font-size: 20px;
-    font-weight: bold;
-}
-li:focus, li input:focus{
+
+li:focus, li:hover{
     background-color: green;
 }
 

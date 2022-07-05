@@ -127,13 +127,17 @@ function sortMedia(medias){
 
   valuePopularite.addEventListener('click', () => valuePopselect())
   function valuePopselect(){
-      
+    repere.classList.toggle('active') //rotation du chevron avec ajout active (css)
+    liste1.classList.toggle('active')
+    liste2.classList.toggle('active')
      sortPopular(medias)
+     
      const gallery = document.querySelector(".gallerie");
     gallery.innerHTML = "";
     displayMedia(medias); //j'affiche ma nouvelle gallerie triée
     lightBox(medias); //lightbox avec le nouvel ordre de gallerie
     likes(medias)
+  
   } 
   valuePopularite.addEventListener('keyup', (event) => {
     //console.log(event)
@@ -147,8 +151,8 @@ function sortMedia(medias){
   
   valueDate.addEventListener('click',() => valueDateSelect()) 
   function valueDateSelect(){
-    console.log(valueDate.textContent || valueDate.innerText);
-   
+    console.log(valueDate.textContent );
+    
     repere.classList.toggle('active') //rotation du chevron avec ajout active (css)
     liste1.classList.toggle('active')
     liste2.classList.toggle('active')
@@ -172,7 +176,7 @@ valueDate.addEventListener('keyup', (event) => {
 valueTitre.addEventListener('click', () => valueTitreSelect()) 
 function valueTitreSelect(){
     console.log(valueTitre.textContent || valueTitre.innerText);
-    
+     
     repere.classList.toggle('active') //rotation du chevron avec ajout active (css)
     liste1.classList.toggle('active')
     liste2.classList.toggle('active')
