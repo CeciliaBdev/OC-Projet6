@@ -4,7 +4,7 @@ export function mediaTemplate(data){
     if (data = image){
         return ` 
             
-                <img src="assets/images/${image}" alt="photographie ${title}"> 
+                <img src="assets/images/${image}"  alt="photographie ${title}"> 
             
             <div class="infos">
                 <p>${title}</p>
