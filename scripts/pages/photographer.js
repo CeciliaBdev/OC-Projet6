@@ -268,15 +268,14 @@ function lightBox(data){
     
     //tableau de ma gallerie (toutes les videos et images)
     const links = Array.from(divLightBox.querySelectorAll(("article img, article video")))
-    
     console.log(links)
    //cibler le media img/video dans le links
    //console.log(data)
 
    //au click d'une image ou video
     links.forEach(link => {
-        link.addEventListener('click', () => {
-            // console.log(link.childNodes[1])
+      var openMedia = () => {
+      // console.log(link.childNodes[1])
             console.log(link)
             //ouverture lightbox
             lightbox.style.display = "block";
@@ -294,21 +293,25 @@ function lightBox(data){
             console.log("index", index) //index =0 pour image en cours
             console.log("media en cours", currentMedia) //mon element clické
             
-              //image precedente
             const prev = document.querySelector(".lightbox_prev")
-            // prev.setAttribute("id", "952343423")
+
+
+            // if(index === 0) {    
+            //   prev.dataset.id = data[data.length-1].id;
+            // } else {   
+            //   prev.dataset.id = data[index-1].id;
+            // }
             prev.dataset.id = data[index-1].id;
             console.log(prev)
-            prev.addEventListener('click', () => prevSlide());
-            document.addEventListener('keyup', (event) => {
-              //appui fleche gauche
-              if(event.key == 'ArrowLeft'){
-                  //console.log("fleche gauche")
-                    prevSlide();          
-              }
-            })
 
-            function prevSlide() {
+            const next = document.querySelector(".lightbox_next")
+            //boutton next: id de l'image suivante
+            next.dataset.id = data[index+1].id
+            console.log(next)            
+
+            //image precedente
+            var prevMedia = () => {
+            
               const lightboxModel = lightBoxFactory(data, prev); //factory gallerie / element clické
               const getLightBoxDom = lightboxModel.getLightBox();//template
               //j'ajoute mon image dans la lightbox
@@ -324,23 +327,10 @@ function lightBox(data){
                   console.log("index", index)
                   prev.dataset.id = data[index-1].id;     // Charge l'ID de la nouvelle valeur index - 1
               }
-          }
+            }
 
-            
-            //image suivante
-            const next = document.querySelector(".lightbox_next")
-            //boutton next: id de l'image suivante
-            next.dataset.id = data[index+1].id
-            console.log(next)
-            next.addEventListener('click', () => nextSlide());
-            document.addEventListener('keyup', (event) => {
-              //appui fleche gauche
-              if(event.key == 'ArrowRight'){
-                  //console.log("fleche gauche")
-                    nextSlide();          
-              }
-            })
-            function nextSlide(){
+            //image suivante        
+            var nextMedia = () => {
               console.log(data[index+ 1])
                 const lightboxModel = lightBoxFactory(data,next) //factory galerie / image suivante
                 const getLightBoxDom = lightboxModel.getLightBox(); //template
@@ -359,16 +349,43 @@ function lightBox(data){
                   console.log("index suivant",index)
                 }         
             }
-        })         
+
+            prev.addEventListener('click', prevMedia);
+            next.addEventListener('click', nextMedia);
+            
+            document.addEventListener('keyup', (event) => {
+              console.log(event.key)
+              if (event.key == 'ArrowLeft') {
+                prevMedia(); 
+              }
+              if (event.key == 'ArrowRight') {
+                nextMedia(); 
+              }
+            } );
+
+        }
+
+        link.addEventListener('click', openMedia);
+        link.addEventListener('keyup', (event) => {
+          //console.log(event.key)
+          if (event.key == 'Enter') {
+            openMedia(); 
+          }
+        } );
+
+
+        // End foreach
     })   
 }
+
+
+
 
 //---- Fermeture Lightbox
 //fonction
 function closeBox(){
   const lightbox = document.querySelector(".lightbox");
-  lightbox.style.display="none";
-  
+  lightbox.style.display="none"; 
 }
 //fermeture au click souris
 const closeLightbox = document.querySelector(".lightbox_close");
