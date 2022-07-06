@@ -55,19 +55,19 @@ contact_modal.addEventListener("submit", (e) => {
     if(!lastnameValidate(nom)){
         error++
     }
-    if(!emailValidate(nom)){
+    if(!emailValidate(email)){
         error++
     }
-    if(!messageValidate(nom)){
+    if(!messageValidate(message)){
         error++
     }
 
     if(error!=0){
         console.log("erreur")
-    }else{
-        formData.forEach(function (userItem) {
-            userItem.remove()
-          });
+    // }else{
+    //     formData.forEach(function (userItem) {
+    //         userItem.remove()
+    //       });
           //affichage console
     console.log("Prenom: "+prenom.value)
     console.log("Nom: "+nom.value)
@@ -75,8 +75,9 @@ contact_modal.addEventListener("submit", (e) => {
     console.log("Message: "+message.value)
 
     //le formulaire se vide
-    location.reload();
-    closeModal();
+    //partie enlever pour bien voir les console.log au dessus 
+    // location.reload();
+    // closeModal();
     }
     
 
@@ -114,7 +115,12 @@ function lastnameValidate(field){
 }
 //check email
 function emailValidate (field){
-    const regex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,}$/
+    //const regex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,}$/
+    //const regex=/^[A-zÀ-ú-]{2,}$/
+    //console.log("Email :", field.value);
+
+    const regex = /^[-_\w].+@[-_\w].+\.\w{2,}$/
+
     if (regex.test(field.value)===false){
       formData[2].setAttribute('data-error', 'Champ "Email" incorrect');
       formData[2].setAttribute('data-error-visible', 'true');
@@ -128,7 +134,7 @@ function emailValidate (field){
 
   //check textarea 
   function messageValidate(field){
-    const regex=/^[A-zÀ-ú-]{2,}$/
+    const regex=/^[A-Za-z0-9 .'?!,@$#-_]{2,}$/
 
     if(regex.test(field.value)===false){
         formData[3].setAttribute('data-error', 'Message incorrect');
