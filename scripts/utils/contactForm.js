@@ -1,3 +1,4 @@
+//import { contactTemplate} from "../templates/contact.js";
 
 
 const formData = document.querySelectorAll(".formData")
@@ -10,12 +11,11 @@ function displayModal() {
     modal.setAttribute('aria-modal',true)
     modal.style.backgroundColor="rgba(255,255,255,0.7)";;
     //emplacement du nom du photographe
-    const name = document.getElementById("name_photographe")
-    //console.log(name.textContent)
-    main.style.display="none"
+    //const name = document.getElementById("name_photographe")
+    
+    //main.style.display="none"
     
 }
-
 
 document.addEventListener('keyup', (event) => {
     //console.log(event)

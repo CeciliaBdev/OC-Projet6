@@ -4,6 +4,7 @@ import { profileFactory } from "../factories/profile.js";
 
 import { priceFactory } from "../factories/price.js";
 import { lightBoxFactory } from "../factories/lightbox.js";
+import { contactFactory } from "../factories/contact.js";
 
 
 
@@ -65,18 +66,20 @@ let liste1 = document.querySelector(".dropdown1")
 let liste2 = document.querySelector(".dropdown2")
 chevron.addEventListener('click', () => {
     console.log("click")
-    repere.classList.toggle('active') //rotation du chevron avec ajout active (css)
-    liste1.classList.toggle('active')
-    liste2.classList.toggle('active')
+      activeClass();
 })
 chevron.addEventListener('keyup', (event) => {
   console.log(event)
   if(event.key == 'Enter'){
+    activeClass();
+  }
+})
+
+function activeClass(){
     repere.classList.toggle('active') //rotation du chevron avec ajout active (css)
     liste1.classList.toggle('active')
     liste2.classList.toggle('active')
-  }
-})
+}
 
 
 //par nb de likes - popularité
@@ -127,9 +130,7 @@ function sortMedia(medias){
 
   valuePopularite.addEventListener('click', () => valuePopselect())
   function valuePopselect(){
-    repere.classList.toggle('active') //rotation du chevron avec ajout active (css)
-    liste1.classList.toggle('active')
-    liste2.classList.toggle('active')
+     activeClass()
      sortPopular(medias)
      
      const gallery = document.querySelector(".gallerie");
@@ -153,9 +154,7 @@ function sortMedia(medias){
   function valueDateSelect(){
     console.log(valueDate.textContent );
     
-    repere.classList.toggle('active') //rotation du chevron avec ajout active (css)
-    liste1.classList.toggle('active')
-    liste2.classList.toggle('active')
+    activeClass()
     sortDate(medias)
     const gallery = document.querySelector(".gallerie");
     gallery.innerHTML = "";
@@ -176,10 +175,7 @@ valueDate.addEventListener('keyup', (event) => {
 valueTitre.addEventListener('click', () => valueTitreSelect()) 
 function valueTitreSelect(){
     console.log(valueTitre.textContent || valueTitre.innerText);
-     
-    repere.classList.toggle('active') //rotation du chevron avec ajout active (css)
-    liste1.classList.toggle('active')
-    liste2.classList.toggle('active')
+    activeClass()
     sortTitle(medias)
     const gallery = document.querySelector(".gallerie");
     gallery.innerHTML = "";
@@ -194,8 +190,6 @@ function valueTitreSelect(){
       valueTitreSelect();
     }
   })
-
-  
 }
 
 //func likes
@@ -257,129 +251,141 @@ function price(photographer){
     const userCardDOM = photographerModel.getUserPriceDOM(); //creation de la const qui regroupe la 1ère et la 2ème fonction de create pour un photographe
     price.appendChild(userCardDOM);
 }
+
+//nom du photographe sur le formulaire de contact
+function contactForm(photographer){
+  const name = document.getElementById("name_photographe")
+  const contactModel = contactFactory(photographer); 
+    const contactDOM = contactModel.getContactDOM(); 
+    name.appendChild(contactDOM);
+
+}
       
        
 
-// lightbox
+/// lightbox
 function lightBox(data){
-    const divLightBox = document.querySelector(".gallerie");
-    const lightbox = document.querySelector(".lightbox");
-    const lightboxContain = document.querySelector(".lightbox_container");
-    
-    //tableau de ma gallerie (toutes les videos et images)
-    const links = Array.from(divLightBox.querySelectorAll(("article img, article video")))
-    console.log(links)
-   //cibler le media img/video dans le links
-   //console.log(data)
+  const divLightBox = document.querySelector(".gallerie");
+  const lightbox = document.querySelector(".lightbox");
+  const lightboxContain = document.querySelector(".lightbox_container");
+  
+  //tableau de ma gallerie (toutes les videos et images)
+  const links = Array.from(divLightBox.querySelectorAll(("article img, article video")))
+  console.log(links)
+ //cibler le media img/video dans le links
+ //console.log(data)
 
-   //au click d'une image ou video
-    links.forEach(link => {
-      var openMedia = () => {
-      // console.log(link.childNodes[1])
-            console.log(link)
-            //ouverture lightbox
-            lightbox.style.display = "block";
-            const lightboxModel = lightBoxFactory(data,link.parentElement); //factory
+ //au click d'une image ou video
+  links.forEach(link => {
+    var openMedia = () => {
+    // console.log(link.childNodes[1])
+          console.log(link)
+          //ouverture lightbox
+          lightbox.style.display = "block";
+          const lightboxModel = lightBoxFactory(data,link.parentElement); //factory
+          const getLightBoxDom = lightboxModel.getLightBox();//template
+      
+          //j'ajoute mon image dans la lightbox
+          lightboxContain.innerHTML="";
+          lightboxContain.appendChild(getLightBoxDom)
+      
+          const currentMedia = link.parentElement.dataset.id 
+          //index de l'image en cours
+          let index = 0;
+          index = data.findIndex((element) => element.id == currentMedia)
+          console.log("index", index) //index =0 pour image en cours
+          console.log("media en cours", currentMedia) //mon element clické
+          
+          const prev = document.querySelector(".lightbox_prev")
+
+
+          // if(index === 0) {    
+          //   prev.dataset.id = data[data.length-1].id;
+          // } else {   
+          //   prev.dataset.id = data[index-1].id;
+          // }
+          //prev.dataset.id = data[index-1].id;
+          console.log(prev)
+
+          const next = document.querySelector(".lightbox_next")
+          //boutton next: id de l'image suivante
+          next.dataset.id = data[index+1].id
+          console.log(next)            
+
+          //image precedente
+          var prevMedia = () => {
+          
+            const lightboxModel = lightBoxFactory(data, prev); //factory gallerie / element clické
             const getLightBoxDom = lightboxModel.getLightBox();//template
-        
             //j'ajoute mon image dans la lightbox
             lightboxContain.innerHTML="";
             lightboxContain.appendChild(getLightBoxDom)
-        
-            const currentMedia = link.parentElement.dataset.id 
-            //index de l'image en cours
-            let index = 0;
-            index = data.findIndex((element) => element.id == currentMedia)
-            console.log("index", index) //index =0 pour image en cours
-            console.log("media en cours", currentMedia) //mon element clické
-            
-            const prev = document.querySelector(".lightbox_prev")
-
-
-            // if(index === 0) {    
-            //   prev.dataset.id = data[data.length-1].id;
-            // } else {   
-            //   prev.dataset.id = data[index-1].id;
-            // }
+            // Décrémente l'index lorsque l'image précédente est chargée
             prev.dataset.id = data[index-1].id;
-            console.log(prev)
-
-            const next = document.querySelector(".lightbox_next")
-            //boutton next: id de l'image suivante
-            next.dataset.id = data[index+1].id
-            console.log(next)            
-
-            //image precedente
-            var prevMedia = () => {
             
-              const lightboxModel = lightBoxFactory(data, prev); //factory gallerie / element clické
-              const getLightBoxDom = lightboxModel.getLightBox();//template
+            //si  1ere image (donc index 0)
+            if(index = 0) {
+              console.log("1ere image")
+                console.log("index", index)
+                //revient au dernier element du tableau
+                index = data.length-1
+            } else {
+                console.log("index", index)
+                index = index - 1
+                //prev.dataset.id = data[index-1].id;     // Charge l'ID de la nouvelle valeur index - 1
+            }
+          }
+
+          //image suivante        
+          var nextMedia = () => {
+            console.log(data[index+ 1])
+              const lightboxModel = lightBoxFactory(data,next) //factory galerie / image suivante
+              const getLightBoxDom = lightboxModel.getLightBox(); //template
               //j'ajoute mon image dans la lightbox
               lightboxContain.innerHTML="";
               lightboxContain.appendChild(getLightBoxDom)
-              // Décrémente l'index lorsque l'image précédente est chargée
-              index = index - 1
-              if(index === 0) {
-                  console.log("index", index)
-                  prev.dataset.id = data[data.length-1].id;
-                  index = data.length
-              } else {
-                  console.log("index", index)
-                  prev.dataset.id = data[index-1].id;     // Charge l'ID de la nouvelle valeur index - 1
-              }
-            }
-
-            //image suivante        
-            var nextMedia = () => {
-              console.log(data[index+ 1])
-                const lightboxModel = lightBoxFactory(data,next) //factory galerie / image suivante
-                const getLightBoxDom = lightboxModel.getLightBox(); //template
-                //j'ajoute mon image dans la lightbox
-                lightboxContain.innerHTML="";
-                lightboxContain.appendChild(getLightBoxDom)
-                //j'incrémente lorsque l'image est chargée
+              //j'incrémente lorsque l'image est chargée
+              next.dataset.id = data[index+1].id
+              //index = index + 1;
+              if (index = data.length-1){
+                console.log("fin de tableau")
+                //on repart du début du tableau
+                next.dataset.id = data[0].id
+                index=0
+              }else{
                 index = index + 1;
-                if (index === data.length -1){
-                  console.log("fin de tableau")
-                  //on repart du début du tableau
-                  next.dataset.id = data[0].id
-                  index = 0
-                }else{
-                  next.dataset.id = data[index+1].id
-                  console.log("index suivant",index)
-                }         
-            }
-
-            prev.addEventListener('click', prevMedia);
-            next.addEventListener('click', nextMedia);
-            
-            document.addEventListener('keyup', (event) => {
-              console.log(event.key)
-              if (event.key == 'ArrowLeft') {
-                prevMedia(); 
-              }
-              if (event.key == 'ArrowRight') {
-                nextMedia(); 
-              }
-            } );
-
-        }
-
-        link.addEventListener('click', openMedia);
-        link.addEventListener('keyup', (event) => {
-          //console.log(event.key)
-          if (event.key == 'Enter') {
-            openMedia(); 
+                //next.dataset.id = data[index+1].id
+                console.log("index suivant",index)
+              }         
           }
-        } );
+
+          prev.addEventListener('click', prevMedia);
+          next.addEventListener('click', nextMedia);
+          
+          document.addEventListener('keyup', (event) => {
+            console.log(event.key)
+            if (event.key == 'ArrowLeft') {
+              prevMedia(); 
+            }
+            if (event.key == 'ArrowRight') {
+              nextMedia(); 
+            }
+          } );
+
+      }
+
+      link.addEventListener('click', openMedia);
+      link.addEventListener('keyup', (event) => {
+        //console.log(event.key)
+        if (event.key == 'Enter') {
+          openMedia(); 
+        }
+      } );
 
 
-        // End foreach
-    })   
+      // End foreach
+  })   
 }
-
-
-
 
 //---- Fermeture Lightbox
 //fonction
@@ -411,7 +417,8 @@ async function Init(){
     displayPhotographer(selectedPhotgrapher);
     displayMedia(photographerMedias);
     likes(photographerMedias);
-    price(selectedPhotgrapher)
+    price(selectedPhotgrapher);
+    contactForm(selectedPhotgrapher);
     lightBox(photographerMedias);
     sortMedia(photographerMedias)   
 }

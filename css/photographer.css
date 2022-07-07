@@ -227,7 +227,7 @@ article video{
 .modal {
     border-radius: 5px;
     background-color: #DB8876;
-    width: 50%;
+    width: 40%;
     height:90vh;
     max-height: calc(100vh - 20px);
     display: flex;
