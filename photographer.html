@@ -19,28 +19,28 @@
     <title>Fisheye - photographe</title>
   </head>
   <body>
-    <header>
+    <header role="entete">
       <img
         src="assets/images/logo.png"
         class="logo"
         alt="logo du site Fisheye"
       />
     </header>
-    <main id="main">
+    <main id="main" role="main">
       <div class="max_container">
         <div class="photograph-header"></div>
-        <div class="FilterSelect">
+        <div class="FilterSelect" aria-labelledby="Filtre de selection">
           <label for="select">Trier Par: </label>
-          <ul aria-label="Filtre">
-            <li class="repere" id="popularite">
+          <ul aria-label="Filtre" role="menu">
+            <li class="repere" id="popularite" role="menuitem">
               Popularité<i
                 class="fas fa-chevron-up"
                 alt="chevron de selection"
                 id="chevron"
               ></i>
             </li>
-            <li class="dropdown dropdown1" id="date">Date</li>
-            <li class="dropdown dropdown2" id="titre">Titre</li>
+            <li class="dropdown dropdown1" id="date" role="menuitem">Date</li>
+            <li class="dropdown dropdown2" id="titre" role="menuitem">Titre</li>
           </ul>
         </div>
 
@@ -51,14 +51,14 @@
         </div>
       </div>
     </main>
-    <div id="contact_modal">
+    <div id="contact_modal" role="contentinfo">
       <div
         class="modal"
         aria-hidden="true"
         role="dialog"
         aria-labelledby="titlemodal"
       >
-        <header>
+        <header role="banner">
           <h2 id="titlemodal">Contactez-moi</h2>
           <p id="name_photographe"></p>
           <img
@@ -66,25 +66,32 @@
             onclick="closeModal()"
             alt="close modal Form"
             id="closemodal"
+            tabindex="0"
           />
         </header>
 
-        <form>
+        <form role="form" aria-labelledby="formulaire de contact">
           <div class="formData">
             <label for="prenom">Prénom</label>
-            <input type="text" id="prenom" class="champInput" />
+            <input
+              type="text"
+              id="prenom"
+              class="champInput"
+              tabindex="0"
+              role="textbox"
+            />
           </div>
           <div class="formData">
             <label for="nom">Nom</label>
-            <input type="text" id="nom" class="champInput" />
+            <input type="text" id="nom" class="champInput" role="textbox" />
           </div>
           <div class="formData">
             <label for="email">Email</label>
-            <input type="email" id="email" />
+            <input type="email" id="email" role="textbox" />
           </div>
           <div class="formData">
             <label for="textarea">Votre message</label>
-            <textarea name="textarea" id="textarea"></textarea>
+            <textarea name="textarea" id="textarea" role="textbox"></textarea>
           </div>
 
           <button class="contact_button" aria-label="Envoyer le formulaire">

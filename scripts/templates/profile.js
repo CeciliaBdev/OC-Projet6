@@ -1,19 +1,16 @@
-export function profileTemplate(data){
-    const { name, portrait,city,country,tagline} = data;
-    
-    return `<div class="infos_profil">
+export function profileTemplate(data) {
+  const { name, portrait, city, country, tagline } = data;
+
+  return `<div class="infos_profil">
             <h1>${name}</h1>
             <h2>${city}, ${country}</h2>
             <p class="tagline">${tagline}</p>
             </div>
         
-            <button class="contact_button" onclick="displayModal()" aria-label="Formulaire de contact" tabindex="0">Contactez-moi</button>
+            <button class="contact_button" onclick="displayModal()" tabindex="0"  aria-label="Formulaire de contact">Contactez-moi</button>
             <img src="assets/photographers/${portrait}" alt="portrait du photographe">
             `;
 }
 
 //pour separer
 //mm nom que la factory
-
-
-

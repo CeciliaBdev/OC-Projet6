@@ -1,7 +1,8 @@
-//import { contactTemplate} from "../templates/contact.js";
-
 const formData = document.querySelectorAll(".formData");
 const main = document.getElementById("main");
+const modal = document.getElementById("contact_modal");
+
+//focus
 
 function displayModal() {
   const modal = document.getElementById("contact_modal");
@@ -12,6 +13,14 @@ function displayModal() {
   //emplacement du nom du photographe
   const name = document.getElementById("name_photographe");
   name.textContent = document.querySelector("h1").textContent;
+
+  //focus
+  //tous les elements focusables
+  const focusableEls = modal.querySelectorAll(
+    'a[href]:not([disabled]), button:not([disabled]), textarea:not([disabled]), input[type="text"]:not([disabled]), input[type="radio"]:not([disabled]), input[type="checkbox"]:not([disabled]), select:not([disabled]),img:not([disabled])'
+  );
+  const firstFocusableEl = focusableEls[0]; // 1er element focus la croix
+  firstFocusableEl.focus();
 }
 
 document.addEventListener("keyup", (event) => {

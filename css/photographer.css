@@ -30,6 +30,7 @@ main {
   .photograph-header article {
     flex-direction: column;
     align-content: space-between;
+    margin: 0;
   }
   .photograph-header article img {
     margin-right: 0;
@@ -56,20 +57,20 @@ h2 {
   margin: 10px 0;
 }
 .infos_profil {
-  width: 30%;
+  width: 25%;
 }
 
 .photograph-header article {
   display: flex;
   align-items: center;
-  justify-content: space-around;
+  justify-content: space-evenly;
   width: 100%;
 }
 .photograph-header img {
   height: 200px;
   width: 200px;
   clip-path: circle(50%);
-  margin-right: 50px;
+  /* margin-right: 50px; */
 }
 
 .contact_button {
