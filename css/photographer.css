@@ -118,7 +118,8 @@ li,
   cursor: pointer;
   text-align: left;
 }
-li:first-child {
+li:first-child,
+li:first-child.active {
   display: flex;
   justify-content: space-between;
 }
@@ -134,7 +135,7 @@ li.active {
   color: green;
 }
 .repere.active i {
-  transform: rotate(-180deg);
+  transform: rotate(180deg);
 }
 
 li:not(:first-child) {

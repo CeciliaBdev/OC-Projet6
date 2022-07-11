@@ -3,6 +3,7 @@ import { mediaFactory } from "../factories/media.js";
 import { profileFactory } from "../factories/profile.js";
 
 import { priceFactory } from "../factories/price.js";
+
 import { lightBoxFactory } from "../factories/lightbox.js";
 
 //fct recupère les données du json
@@ -59,16 +60,6 @@ let repere = document.querySelector(".repere");
 let chevron = document.querySelector(".repere i");
 let liDate = document.querySelector(".dropdown1");
 let liTitre = document.querySelector(".dropdown2");
-chevron.addEventListener("click", () => {
-  //console.log("click");
-  activeClass();
-});
-chevron.addEventListener("keyup", (event) => {
-  //console.log(event);
-  if (event.key == "Enter") {
-    activeClass();
-  }
-});
 
 function activeClass() {
   repere.classList.toggle("active"); //rotation du chevron avec ajout active (css)
@@ -124,7 +115,10 @@ function sortMedia(medias) {
   function valuePopselect() {
     activeClass();
     sortPopular(medias);
-
+    valuePopularite.textContent = "Popularité";
+    valueDate.textContent = "Date";
+    valueTitre.textContent = "Titre";
+    valuePopularite.appendChild(chevron);
     const gallery = document.querySelector(".gallerie");
     gallery.innerHTML = "";
     displayMedia(medias); //j'affiche ma nouvelle gallerie triée
@@ -143,7 +137,8 @@ function sortMedia(medias) {
   valueDate.addEventListener("click", () => valueDateSelect());
   function valueDateSelect() {
     //console.log(valueDate.textContent);
-
+    valuePopularite.textContent = "Date";
+    valueDate.textContent = "Popularité";
     activeClass();
     sortDate(medias);
     const gallery = document.querySelector(".gallerie");
@@ -162,6 +157,8 @@ function sortMedia(medias) {
 
   valueTitre.addEventListener("click", () => valueTitreSelect());
   function valueTitreSelect() {
+    valuePopularite.textContent = "Titre";
+    valueTitre.textContent = "Popularité";
     //console.log(valueTitre.textContent || valueTitre.innerText);
     activeClass();
     sortTitle(medias);
