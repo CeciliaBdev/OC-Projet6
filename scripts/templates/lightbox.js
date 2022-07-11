@@ -3,7 +3,7 @@ export function lightBoxTemplate(data, elementClicked) {
 
   const idClicked = elementClicked.dataset.id;
 
-  console.log("idClicked", idClicked);
+  //console.log("idClicked", idClicked);
   //console.log("data",data)
 
   // const { image,video,title } = data.find((item) => item.id == idClicked )

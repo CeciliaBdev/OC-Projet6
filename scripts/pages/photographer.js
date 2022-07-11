@@ -279,25 +279,20 @@ function lightBox(data) {
 
       //image precedente
       const prevMedia = () => {
+        if (index == 0) {
+          //revient au dernier element du tableau
+          index = data.length - 1;
+        } else {
+          index = index - 1;
+        }
+        prev.dataset.id = data[index].id;
+
         const lightboxModel = lightBoxFactory(data, prev); //factory gallerie / element clické
         const getLightBoxDom = lightboxModel.getLightBox(); //template
         //j'ajoute mon image dans la lightbox
         lightboxContain.innerHTML = "";
         lightboxContain.appendChild(getLightBoxDom);
-        // Décrémente l'index lorsque l'image précédente est chargée
-        prev.dataset.id = data[index - 1].id;
-
-        //si  1ere image (donc index 0)
-        if ((index = 0)) {
-          console.log("1ere image");
-          console.log("index", index);
-          //revient au dernier element du tableau
-          index = data.length - 1;
-        } else {
-          console.log("index", index);
-          index = index - 1;
-          //prev.dataset.id = data[index-1].id;     // Charge l'ID de la nouvelle valeur index - 1
-        }
+        //console.log("index", index);
       };
 
       //image suivante
@@ -309,7 +304,7 @@ function lightBox(data) {
         }
         next.dataset.id = data[index].id;
 
-        console.log("id suivante", next);
+        //console.log("id suivante", next);
         //console.log(data[index + 1]);
         const lightboxModel = lightBoxFactory(data, next); //factory galerie / image suivante
         const getLightBoxDom = lightboxModel.getLightBox(); //template
@@ -317,7 +312,7 @@ function lightBox(data) {
         lightboxContain.innerHTML = "";
         lightboxContain.appendChild(getLightBoxDom);
 
-        console.log("index : ", index);
+        //console.log("index : ", index);
       };
 
       prev.addEventListener("click", prevMedia);
