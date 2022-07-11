@@ -274,20 +274,8 @@ function lightBox(data) {
       console.log("index", index); //index =0 pour image en cours
       console.log("media en cours", currentMedia); //mon element clické
 
-      const prev = document.querySelector(".lightbox_prev");
-
-      // if(index === 0) {
-      //   prev.dataset.id = data[data.length-1].id;
-      // } else {
-      //   prev.dataset.id = data[index-1].id;
-      // }
-      //prev.dataset.id = data[index-1].id;
-      console.log(prev);
-
-      const next = document.querySelector(".lightbox_next");
-      //boutton next: id de l'image suivante
-      next.dataset.id = data[index + 1].id;
-      console.log(next);
+      const prev = lightbox.querySelector(".lightbox_prev");
+      const next = lightbox.querySelector(".lightbox_next");
 
       //image precedente
       const prevMedia = () => {
@@ -314,32 +302,29 @@ function lightBox(data) {
 
       //image suivante
       const nextMedia = () => {
-        console.log(data[index + 1]);
+        if (index == data.length - 1) {
+          index = 0;
+        } else {
+          index = index + 1;
+        }
+        next.dataset.id = data[index].id;
+
+        console.log("id suivante", next);
+        //console.log(data[index + 1]);
         const lightboxModel = lightBoxFactory(data, next); //factory galerie / image suivante
         const getLightBoxDom = lightboxModel.getLightBox(); //template
         //j'ajoute mon image dans la lightbox
         lightboxContain.innerHTML = "";
         lightboxContain.appendChild(getLightBoxDom);
-        //j'incrémente lorsque l'image est chargée
-        next.dataset.id = data[index + 1].id;
-        //index = index + 1;
-        if ((index = data.length - 1)) {
-          console.log("fin de tableau");
-          //on repart du début du tableau
-          next.dataset.id = data[0].id;
-          index = 0;
-        } else {
-          index = index + 1;
-          //next.dataset.id = data[index+1].id
-          console.log("index suivant", index);
-        }
+
+        console.log("index : ", index);
       };
 
       prev.addEventListener("click", prevMedia);
       next.addEventListener("click", nextMedia);
 
       document.addEventListener("keyup", (event) => {
-        console.log(event.key);
+        //console.log(event.key);
         if (event.key == "ArrowLeft") {
           prevMedia();
         }
