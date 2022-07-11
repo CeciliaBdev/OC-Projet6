@@ -339,6 +339,14 @@ function lightBox(data) {
 
     // End foreach
   });
+
+  //focus - ne fonctionne pas
+  const focusableEls = lightbox.querySelectorAll(
+    'a[href]:not([disabled]), button:not([disabled]), textarea:not([disabled]), input[type="text"]:not([disabled]), input[type="radio"]:not([disabled]), input[type="checkbox"]:not([disabled]), select:not([disabled]),img:not([disabled])'
+  );
+  //console.log(focusableEls);
+  const firstFocusableEl = focusableEls[0]; // 1er element focus la croix
+  firstFocusableEl.focus();
 }
 
 //---- Fermeture Lightbox

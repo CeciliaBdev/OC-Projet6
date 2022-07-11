@@ -13,27 +13,28 @@ main {
   max-width: 1300px;
   margin: 0 auto;
 }
+@media screen and (max-width: 1024px) {
+  .max_container {
+    max-width: 900px;
+  }
+}
+@media screen and (max-width: 768px) {
+  .max_container {
+    max-width: 600px;
+  }
+}
 .photograph-header {
   background-color: #fafafa;
-  height: 300px;
+  height: fit-content;
   width: 100%;
-
   display: flex;
   margin-bottom: 50px;
 }
-@media screen and (max-width: 1024px) {
-  .photograph-header {
-    height: 550px;
-
-    align-content: center;
-  }
+@media screen and (max-width: 768px) {
   .photograph-header article {
     flex-direction: column;
-    align-content: space-between;
-    margin: 0;
-  }
-  .photograph-header article img {
-    margin-right: 0;
+    gap: 30px;
+    margin: 20px 0;
   }
 }
 
@@ -58,6 +59,12 @@ h2 {
 }
 .infos_profil {
   width: 25%;
+}
+@media screen and (max-width: 768px) {
+  .infos_profil {
+    width: 100%;
+    text-align: center;
+  }
 }
 
 .photograph-header article {
@@ -181,7 +188,7 @@ article video {
 
 .info_details {
   position: fixed;
-  right: 100px;
+  right: 5vw;
   bottom: 0;
   background: #db8876;
   height: 40px;
@@ -339,8 +346,8 @@ form .contact_button:focus {
   z-index: 20;
 }
 .lightbox_container {
-  height: 100vh;
-  width: 90vw;
+  height: 100%;
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
