@@ -2,63 +2,97 @@
 <html lang="fr">
   <head>
     <link href="css/style.css" rel="stylesheet" type="text/css" />
-    <meta charset="utf-8">
-    <link rel="icon" type="image/png" href="assets/favicon.png">
-    <link href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    
-    <title>Fisheye - photographe </title>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/png" href="assets/favicon.png" />
+    <link
+      href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+      integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+
+    <title>Fisheye - photographe</title>
   </head>
   <body>
     <header>
-      <img src="assets/images/logo.png" class="logo" alt="logo du site Fisheye" />
+      <img
+        src="assets/images/logo.png"
+        class="logo"
+        alt="logo du site Fisheye"
+      />
     </header>
     <main id="main">
-      <div class="photograph-header">  
-      </div>
-      <label for="select">Trier Par: </label>
-      <ul aria-label="Filtre" >
-        <li class="repere" id="popularite" >Popularité<i class="fas fa-chevron-up" alt="chevron de selection" ></i></li>
-        <li class=" dropdown dropdown1" id="date" >Date</li>
-        <li class=" dropdown dropdown2" id="titre">Titre</li>
-    </ul>
+      <div class="max_container">
+        <div class="photograph-header"></div>
+        <div class="FilterSelect">
+          <label for="select">Trier Par: </label>
+          <ul aria-label="Filtre">
+            <li class="repere" id="popularite">
+              Popularité<i
+                class="fas fa-chevron-up"
+                alt="chevron de selection"
+                id="chevron"
+              ></i>
+            </li>
+            <li class="dropdown dropdown1" id="date">Date</li>
+            <li class="dropdown dropdown2" id="titre">Titre</li>
+          </ul>
+        </div>
 
-      <div class="gallerie"></div>
-      <div class="info_details">
-        <div class="likes"></div>
-        <div class="price"></div>
+        <div class="gallerie"></div>
+        <div class="info_details">
+          <div class="likes"></div>
+          <div class="price"></div>
+        </div>
       </div>
     </main>
     <div id="contact_modal">
-			<div class="modal" aria-hidden="true" role="dialog" aria-labelledby="titlemodal" >
-				<header>
+      <div
+        class="modal"
+        aria-hidden="true"
+        role="dialog"
+        aria-labelledby="titlemodal"
+      >
+        <header>
           <h2 id="titlemodal">Contactez-moi</h2>
           <p id="name_photographe"></p>
-          <img src="assets/icons/close.svg" onclick="closeModal()" alt="close modal Form" id="closemodal" />
+          <img
+            src="assets/icons/close.svg"
+            onclick="closeModal()"
+            alt="close modal Form"
+            id="closemodal"
+          />
         </header>
 
-				<form>
-					<div class="formData">
-						<label for="prenom">Prénom</label>
-						<input type="text" id="prenom" class="champInput" />
+        <form>
+          <div class="formData">
+            <label for="prenom">Prénom</label>
+            <input type="text" id="prenom" class="champInput" />
           </div>
           <div class="formData">
             <label for="nom">Nom</label>
-						<input type="text" id="nom" class="champInput" />
-        </div>
-        <div class="formData">
+            <input type="text" id="nom" class="champInput" />
+          </div>
+          <div class="formData">
             <label for="email">Email</label>
-						<input type="email" id="email" />
-        </div>
-        <div class="formData">
+            <input type="email" id="email" />
+          </div>
+          <div class="formData">
             <label for="textarea">Votre message</label>
             <textarea name="textarea" id="textarea"></textarea>
-        </div>
-			
-          <button class="contact_button" aria-label="Envoyer le formulaire">Envoyer</button>
-				</form>
-			</div>
-		</div>
+          </div>
+
+          <button class="contact_button" aria-label="Envoyer le formulaire">
+            Envoyer
+          </button>
+        </form>
+      </div>
+    </div>
 
     <!-- lightbox -->
     <div class="lightbox">
@@ -69,6 +103,5 @@
     </div>
     <script src="./scripts/pages/photographer.js" type="module"></script>
     <script src="./scripts/utils/contactForm.js"></script>
-  
   </body>
 </html>

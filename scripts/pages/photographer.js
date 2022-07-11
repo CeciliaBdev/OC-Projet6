@@ -56,15 +56,15 @@ function displayMedia(medias) {
 
 //menu deroulant de la liste
 let repere = document.querySelector(".repere");
-let chevron = document.querySelector("li i");
-let liste1 = document.querySelector(".dropdown1");
-let liste2 = document.querySelector(".dropdown2");
+let chevron = document.querySelector(".repere i");
+let liDate = document.querySelector(".dropdown1");
+let liTitre = document.querySelector(".dropdown2");
 chevron.addEventListener("click", () => {
-  console.log("click");
+  //console.log("click");
   activeClass();
 });
 chevron.addEventListener("keyup", (event) => {
-  console.log(event);
+  //console.log(event);
   if (event.key == "Enter") {
     activeClass();
   }
@@ -72,8 +72,8 @@ chevron.addEventListener("keyup", (event) => {
 
 function activeClass() {
   repere.classList.toggle("active"); //rotation du chevron avec ajout active (css)
-  liste1.classList.toggle("active");
-  liste2.classList.toggle("active");
+  liDate.classList.toggle("active");
+  liTitre.classList.toggle("active");
 }
 
 //par nb de likes - popularité
@@ -135,14 +135,14 @@ function sortMedia(medias) {
     //console.log(event)
     //si appuie sur escape
     if (event.key == "Enter") {
-      console.log("select par touche Entrée");
+      //console.log("select par touche Entrée");
       valuePopselect();
     }
   });
 
   valueDate.addEventListener("click", () => valueDateSelect());
   function valueDateSelect() {
-    console.log(valueDate.textContent);
+    //console.log(valueDate.textContent);
 
     activeClass();
     sortDate(medias);
@@ -162,7 +162,7 @@ function sortMedia(medias) {
 
   valueTitre.addEventListener("click", () => valueTitreSelect());
   function valueTitreSelect() {
-    console.log(valueTitre.textContent || valueTitre.innerText);
+    //console.log(valueTitre.textContent || valueTitre.innerText);
     activeClass();
     sortTitle(medias);
     const gallery = document.querySelector(".gallerie");
@@ -249,7 +249,7 @@ function lightBox(data) {
   const links = Array.from(
     divLightBox.querySelectorAll("article img, article video")
   );
-  console.log(links);
+  //console.log(links);
   //cibler le media img/video dans le links
   //console.log(data)
 
@@ -257,7 +257,7 @@ function lightBox(data) {
   links.forEach((link) => {
     const openMedia = () => {
       // console.log(link.childNodes[1])
-      console.log(link);
+      // console.log(link);
       //ouverture lightbox
       lightbox.style.display = "block";
       const lightboxModel = lightBoxFactory(data, link.parentElement); //factory
