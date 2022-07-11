@@ -13,6 +13,7 @@ function displayModal() {
     //emplacement du nom du photographe
     //const name = document.getElementById("name_photographe")
     
+    //test pour trap le focus dans la modale
     //main.style.display="none"
     
 }
@@ -146,3 +147,5 @@ function emailValidate (field){
         return true
     }
   }
+
+  
