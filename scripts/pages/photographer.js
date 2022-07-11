@@ -198,7 +198,14 @@ function likes(data) {
   //cibler le media img/video dans le links
   coeurs.forEach((element) => {
     //pour chaque coeur
-    element.addEventListener("click", () => {
+    element.addEventListener("click", addLikes);
+    element.addEventListener("keyup", (event) => {
+      if (event.key == "Enter") {
+        addLikes();
+      }
+    });
+
+    function addLikes() {
       //si contient la class liked - j'enlève -1coeur
       if (element.classList.contains("liked")) {
         allLikes--;
@@ -222,7 +229,7 @@ function likes(data) {
         //texte element précedent s'incrémete
         element.previousSibling.textContent++;
       }
-    });
+    }
   });
 }
 
