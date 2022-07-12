@@ -6,7 +6,7 @@ import { priceFactory } from "../factories/price.js";
 
 import { lightBoxFactory } from "../factories/lightbox.js";
 
-//fct recupère les données du json
+//fonction qui recupère les données du json
 async function getPhotographers() {
   const response = await fetch("./data/photographers.json");
   const data = await response.json(); // extrait les données du json
@@ -17,7 +17,7 @@ async function getPhotographers() {
   return { photographers: data.photographers, medias: data.media };
 }
 
-//fct selectionne le photographe
+//fonction qui selectionne le photographe
 async function getSelectedPhotographer(id) {
   //données du json de la fct au dessus
   const { photographers, medias } = await getPhotographers();
@@ -33,7 +33,7 @@ async function getSelectedPhotographer(id) {
   return { selectedPhotgrapher, photographerMedias };
 }
 
-//fct affichage dans le header - profil du photographe
+//fonction affichage dans le header - profil du photographe
 function displayPhotographer(photographer) {
   const photographerHeader = document.querySelector(".photograph-header");
   const photographerModel = profileFactory(photographer);
@@ -41,7 +41,7 @@ function displayPhotographer(photographer) {
   photographerHeader.appendChild(ProfileDOM);
 }
 
-//fct affichage des medias dans la gallerie
+//fonction affichage des medias dans la gallerie
 function displayMedia(medias) {
   const gallerie = document.querySelector(".gallerie");
   medias.forEach((media) => {
@@ -123,11 +123,9 @@ function sortMedia(medias) {
     gallery.innerHTML = "";
     displayMedia(medias); //j'affiche ma nouvelle gallerie triée
     lightBox(medias); //lightbox avec le nouvel ordre de gallerie
-    likes(medias);
+    likes(medias); //je peux liker dans la nouvelle galerie triée
   }
   valuePopularite.addEventListener("keyup", (event) => {
-    //console.log(event)
-    //si appuie sur escape
     if (event.key == "Enter") {
       //console.log("select par touche Entrée");
       valuePopselect();
@@ -169,8 +167,6 @@ function sortMedia(medias) {
     likes(medias);
   }
   valueTitre.addEventListener("keyup", (event) => {
-    //console.log(event)
-    //si appuie sur escape
     if (event.key == "Enter") {
       valueTitreSelect();
     }
@@ -197,7 +193,7 @@ function likes(data) {
 
   //cibler le media img/video dans le links
   coeurs.forEach((element) => {
-    //pour chaque coeur
+    //pour chaque coeur au click ou sur "Enter" au clavier
     element.addEventListener("click", addLikes);
     element.addEventListener("keyup", (event) => {
       if (event.key == "Enter") {
@@ -213,7 +209,7 @@ function likes(data) {
                                 <p aria-label="${allLikes} coeur" >${allLikes}  <i class="fas fa-heart"></i></p>
                                 </div>`;
         //console.log(element.previousSibling);
-        //texte element précedent s'incrémete
+        //texte element précedent diminue
         element.previousSibling.textContent--;
         //j'enlève la classe coeur
         element.classList.remove("liked");
@@ -243,7 +239,7 @@ function price(photographer) {
   price.appendChild(userCardDOM);
 }
 
-/// lightbox
+/// La lightbox
 function lightBox(data) {
   const divLightBox = document.querySelector(".gallerie");
   const lightbox = document.querySelector(".lightbox");
@@ -278,10 +274,11 @@ function lightBox(data) {
       console.log("index", index); //index =0 pour image en cours
       console.log("media en cours", currentMedia); //mon element clické
 
+      //mes boutons precédent et suivant
       const prev = lightbox.querySelector(".lightbox_prev");
       const next = lightbox.querySelector(".lightbox_next");
 
-      //image precedente
+      //pour avoir l'image precedente
       const prevMedia = () => {
         if (index == 0) {
           //revient au dernier element du tableau
@@ -299,7 +296,7 @@ function lightBox(data) {
         //console.log("index", index);
       };
 
-      //image suivante
+      //pour avoir l'image suivante
       const nextMedia = () => {
         if (index == data.length - 1) {
           index = 0;
@@ -344,7 +341,7 @@ function lightBox(data) {
     // End foreach
   });
 
-  //focus - ne fonctionne pas
+  //focus
   const focusableEls = lightbox.querySelectorAll(
     'a[href]:not([disabled]), button:not([disabled]), textarea:not([disabled]), input[type="text"]:not([disabled]), input[type="radio"]:not([disabled]), input[type="checkbox"]:not([disabled]), select:not([disabled]),img:not([disabled])'
   );
