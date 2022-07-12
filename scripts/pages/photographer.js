@@ -209,8 +209,8 @@ function likes(data) {
       //si contient la class liked - j'enlève -1coeur
       if (element.classList.contains("liked")) {
         allLikes--;
-        likes.innerHTML = `<div class="details">
-                                <p>${allLikes}  <i class="fas fa-heart"></i></p>
+        likes.innerHTML = `<div class="details"tabindex="0">
+                                <p aria-label="${allLikes} coeur" >${allLikes}  <i class="fas fa-heart"></i></p>
                                 </div>`;
         //console.log(element.previousSibling);
         //texte element précedent s'incrémete
@@ -222,8 +222,8 @@ function likes(data) {
       else {
         element.classList.add("liked");
         allLikes++;
-        likes.innerHTML = `<div class="details">
-                                <p>${allLikes}  <i class="fas fa-heart"></i></p>
+        likes.innerHTML = `<div class="details" tabindex="0">
+                                <p aria-label="${allLikes} coeur" tabindex="0" >${allLikes}  <i class="fas fa-heart"></i></p>
                                 </div>`;
         //console.log(element.previousSibling);
         //texte element précedent s'incrémete

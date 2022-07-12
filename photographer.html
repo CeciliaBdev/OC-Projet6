@@ -19,7 +19,7 @@
     <title>Fisheye - photographe</title>
   </head>
   <body>
-    <header role="entete">
+    <header>
       <a href="./index.html" aria-label="Fisheye, retour à la page d'accueil">
         <img
           src="assets/images/logo.png"
@@ -28,32 +28,39 @@
         />
       </a>
     </header>
-    <main id="main" role="main">
+    <main id="main">
       <div class="max_container">
         <div class="photograph-header"></div>
-        <div class="FilterSelect" aria-labelledby="Filtre de selection">
-          <label for="select">Trier Par: </label>
-          <ul aria-label="Filtre" role="menu" tabindex="0">
-            <li class="repere" id="popularite" role="menuitem" tabindex="0">
+        <div class="FilterSelect">
+          <label for="select" aria-labelledby="Filtre de selection"
+            >Trier Par:
+          </label>
+          <ul aria-label="Filtre de selection" tabindex="0" id="select">
+            <li
+              class="repere"
+              id="popularite"
+              tabindex="0"
+              aria-label="Filtre par Popularité"
+            >
               Popularité<i
                 class="fas fa-chevron-up"
-                alt="chevron de selection"
                 id="chevron"
+                aria-label="chevron de selection"
               ></i>
             </li>
             <li
               class="dropdown dropdown1"
               id="date"
-              role="menuitem"
               tabindex="0"
+              aria-label="Filtre par date"
             >
               Date
             </li>
             <li
               class="dropdown dropdown2"
               id="titre"
-              role="menuitem"
               tabindex="0"
+              aria-label="Filtre par Titre"
             >
               Titre
             </li>
@@ -67,26 +74,26 @@
         </div>
       </div>
     </main>
-    <div id="contact_modal" role="contentinfo">
+    <div id="contact_modal">
       <div
         class="modal"
         aria-hidden="true"
         role="dialog"
-        aria-labelledby="titlemodal"
+        aria-describedby="titlemodal"
       >
-        <header role="banner">
+        <header>
           <h2 id="titlemodal">Contactez-moi</h2>
           <p id="name_photographe"></p>
           <img
             src="assets/icons/close.svg"
             onclick="closeModal()"
-            alt="close modal Form"
+            alt="croix de fermeture de la modale"
             id="closemodal"
             tabindex="0"
           />
         </header>
 
-        <form role="form" aria-labelledby="formulaire de contact">
+        <form aria-describedby="formulaire de contact">
           <div class="formData">
             <label for="prenom">Prénom</label>
             <input
@@ -94,20 +101,30 @@
               id="prenom"
               class="champInput"
               tabindex="0"
-              role="textbox"
+              aria-label="Entrez votre Prénom"
             />
           </div>
           <div class="formData">
             <label for="nom">Nom</label>
-            <input type="text" id="nom" class="champInput" role="textbox" />
+            <input
+              type="text"
+              id="nom"
+              class="champInput"
+              aria-label="Entrez votre Nom"
+            />
           </div>
           <div class="formData">
             <label for="email">Email</label>
-            <input type="email" id="email" role="textbox" />
+            <input type="email" id="email" aria-label="Entrez votre email" />
           </div>
           <div class="formData">
             <label for="textarea">Votre message</label>
-            <textarea name="textarea" id="textarea" role="textbox"></textarea>
+            <textarea
+              name="textarea"
+              id="textarea"
+              aria-label="Entrez votre message"
+              placeholder="Entrez votre message"
+            ></textarea>
           </div>
 
           <button class="contact_button" aria-label="Envoyer le formulaire">
@@ -118,7 +135,7 @@
     </div>
 
     <!-- lightbox -->
-    <div class="lightbox">
+    <div class="lightbox" role="dialog">
       <button class="lightbox_close" aria-label="Fermer la lightbox"></button>
       <button class="lightbox_prev" aria-label="retour précédent"></button>
       <button class="lightbox_next" aria-label="Suivant"></button>
