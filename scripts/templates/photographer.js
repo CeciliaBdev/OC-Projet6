@@ -1,5 +1,5 @@
 export function photographerTemplate(data) {
-  const { name, portrait, city, country, tagline, price, id } = data;
+  const { name, portrait, city, country, tagline, price, id } = data
   return `<a href="photographer.html?id=${id}" aria-label="Galerie du photographe ${name}">
         <img src="assets/photographers/${portrait}" alt="portrait du photographe ${name}">
         <h2>${name}</h2>
@@ -9,8 +9,8 @@ export function photographerTemplate(data) {
         <p>${tagline}</p>
         <p class="price">${price}€/jour</p>
         </div>
-        `;
+        `
 }
 
-//pour separer
-//mm nom que la factory
+// pour separer
+// mm nom que la factory

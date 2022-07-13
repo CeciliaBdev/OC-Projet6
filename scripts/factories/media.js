@@ -1,23 +1,14 @@
-import { mediaTemplate} from "../templates/media.js";
+import { mediaTemplate } from '../templates/media.js'
 
-export function mediaFactory(data){
-    
+export function mediaFactory(data) {
+  function getMediaCardDom() {
+    const article = document.createElement('article')
+    article.classList.add('mediaGallerie')
+    article.dataset.id = data.id
+    article.innerHTML = mediaTemplate(data)
 
-    function getMediaCardDom(){
-        const article = document.createElement("article");
-        article.classList.add("mediaGallerie");
-        article.dataset.id=data.id;
-        article.innerHTML = mediaTemplate(data);
+    return article
+  }
 
-        return article;
-    }
-   
-    
-     
-
-
-    return {data, getMediaCardDom};
-
+  return { data, getMediaCardDom }
 }
-
-

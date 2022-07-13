@@ -1,7 +1,7 @@
 export function profileTemplate(data) {
   const { name, portrait, city, country, tagline } = data
 
-  return `  <div class="photographe">
+  const html = `  <div class="photographe">
             <div class="infos_profil" tabindex="0">
             <h1>${name}</h1>
             </div>
@@ -10,13 +10,9 @@ export function profileTemplate(data) {
             <p class="tagline">${tagline}</p>
             </div>
             </div>
-        
-            <button class="contact_button" onclick="displayModal()" tabindex="0"  aria-label="Formulaire de contact, Contactez moi">Contactez-moi</button>
+            <button class='contact_button' tabindex="0"  aria-label="Formulaire de contact, Contactez moi" id='openForm' >Contactez Moi</button>
             <img src="assets/photographers/${portrait}" alt="portrait du photographe ${name}" tabindex="0">
             `
+
+  return html
 }
-
-// fct display modal
-
-//pour separer
-//mm nom que la factory
