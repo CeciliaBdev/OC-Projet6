@@ -39,21 +39,22 @@ main {
   .photograph-header article {
     flex-direction: column;
     gap: 30px;
-    margin: 20px 0;
+    justify-content: center;
+    height: 600px;
   }
 }
 
 h1 {
   color: #d3573c;
   font-size: 64px;
-  font-family: "DM Sans";
+  font-family: 'DM Sans';
   font-weight: 400;
   margin: 0;
 }
 h2 {
   color: #901c1c;
   font-size: 24px;
-  font-family: "DM Sans";
+  font-family: 'DM Sans';
   font-weight: 400;
   margin: 0;
 }
@@ -115,8 +116,9 @@ h2 {
 /* select tri */
 .FilterSelect {
   display: flex;
-  align-items: center;
+  /* align-items: center; */
 }
+
 li,
 .repere,
 .dropdown1,
@@ -124,13 +126,15 @@ li,
   font-size: 20px;
   font-weight: bold;
   color: white;
-  padding: 30px 10px;
-  width: 170px;
+  padding: 20px;
+  width: 150px;
+  height: 30px;
   border: none;
   background-color: #901c1c;
-  border-radius: 5px;
   cursor: pointer;
   text-align: left;
+  position: relative;
+  top: -25px;
 }
 li:first-child,
 li:first-child.active {
@@ -145,13 +149,21 @@ li.dropdown2 {
 li.active {
   display: block;
 }
-.repere i:hover {
+/* .repere i:hover {
   color: green;
-}
+} */
 .repere.active i {
   transform: rotate(180deg);
 }
-
+.repere {
+  border-radius: 5px;
+}
+.repere.active {
+  border-radius: 5px 5px 0px 0px;
+}
+li:last-child {
+  border-radius: 0px 0px 5px 5px;
+}
 li:not(:first-child) {
   border-top: 1px solid white;
 }
@@ -189,6 +201,8 @@ article img {
 }
 article video {
   height: 350px;
+  border-radius: 5px;
+  object-fit: cover;
 }
 .infos {
   display: flex;
@@ -309,7 +323,7 @@ form .contact_button:focus {
   line-height: 0.3;
   opacity: 0;
 }
-.formData[data-error-visible="true"]::after {
+.formData[data-error-visible='true']::after {
   opacity: 1;
 }
 

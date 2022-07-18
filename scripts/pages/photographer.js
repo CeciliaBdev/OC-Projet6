@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import { mediaFactory } from '../factories/media.js'
 
 import { profileFactory } from '../factories/profile.js'
@@ -45,6 +44,7 @@ function displayPhotographer(photographer) {
     displayModal()
   })
 
+  // function affichage du formulaire de contact
   function displayModal() {
     const modal = document.getElementById('contact_modal')
     modal.style.display = 'block'
@@ -297,9 +297,9 @@ function lightBox(data) {
       // index de l'image en cours
       let index = 0
       index = data.findIndex((element) => element.id === currentMedia)
-      console.log(typeof currentMedia)
-      console.log('index', index) // index =0 pour image en cours
-      console.log('media en cours', currentMedia) // mon element clické
+      // console.log(typeof currentMedia)
+      // console.log('index', index) // index =0 pour image en cours
+      // console.log('media en cours', currentMedia) // mon element clické
 
       // mes boutons precédent et suivant
       const prev = lightbox.querySelector('.lightbox_prev')
